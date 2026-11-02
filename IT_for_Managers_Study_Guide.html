@@ -1,0 +1,1389 @@
+<title>IT for Managers Study Guide</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,700&family=Nunito:wght@400;600;700;800&display=swap">
+<style>
+/* Layout: a single reading column under a sticky journey bar. One chapter per page, lessons stacked as cards. Light, bright palette only. */
+:root{
+  --bg:#F6F9FF; --surface:#FFFFFF; --ink:#1C2740; --ink2:#4F5E7B; --line:#D9E3F3; --line2:#EAF0FA;
+  --ok:#17804F; --ok-bg:#E1F6EA; --bad:#C2372F; --bad-bg:#FDE7E5;
+  --warn-bg:#FFF6DB; --warn-line:#E0AE2B; --warn-ink:#5E4300;
+  --a:#1F6FDB; --a-soft:#E6F0FF; --a-ink:#174A94;
+  --head:'Bricolage Grotesque','Trebuchet MS',system-ui,sans-serif;
+  --body:'Nunito','Segoe UI',system-ui,sans-serif;
+  --shadow:0 1px 2px rgba(28,39,64,.06),0 8px 22px rgba(28,39,64,.06);
+  color-scheme:light;
+}
+[data-ph="1"]{--a:#1F6FDB;--a-soft:#E6F0FF;--a-ink:#174A94}
+[data-ph="2"]{--a:#0E8A5F;--a-soft:#E0F7EE;--a-ink:#0A5E41}
+[data-ph="3"]{--a:#A86B00;--a-soft:#FFF1C9;--a-ink:#6B4400}
+[data-ph="4"]{--a:#D14624;--a-soft:#FFE8E0;--a-ink:#8C2A12}
+[data-ph="5"]{--a:#6444D4;--a-soft:#EEE9FF;--a-ink:#41289A}
+[data-ph="6"]{--a:#0A8294;--a-soft:#DDF5F9;--a-ink:#065966}
+[data-ph="7"]{--a:#C8316A;--a-soft:#FFE5EE;--a-ink:#861E47}
+[data-ph="8"]{--a:#4F7F0E;--a-soft:#EBF7D3;--a-ink:#33550A}
+[data-ph="9"]{--a:#4252C8;--a-soft:#E8EBFF;--a-ink:#2A3591}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--ink);font-family:var(--body);font-size:16px;line-height:1.6;
+  padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-block:0 64px}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);background:var(--surface);z-index:30}
+button{font:inherit;color:inherit;cursor:pointer}
+button:focus-visible,a:focus-visible,input:focus-visible,select:focus-visible{outline:3px solid var(--a);outline-offset:2px}
+h1,h2,h3{font-family:var(--head);line-height:1.15;margin:0;text-wrap:balance}
+p{margin:0}
+b{font-weight:800}
+.app{max-width:900px;margin:0 auto}
+
+/* Journey bar */
+.bar{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;background:var(--surface);margin:0 calc(-1*max(16px,env(safe-area-inset-left,0px)));padding:10px max(16px,env(safe-area-inset-left,0px)) 8px;border-bottom:1px solid var(--line);}
+.bar-top{display:flex;align-items:center;justify-content:space-between;gap:12px;max-width:900px;margin:0 auto 8px}
+.brand{font-family:var(--head);font-weight:700;font-size:17px}
+.brand small{font-family:var(--body);font-weight:600;color:var(--ink2);font-size:12px;margin-left:8px}
+.gprog{display:flex;align-items:center;gap:8px;font-size:12px;color:var(--ink2);font-weight:700}
+.gprog i{display:block;width:90px;height:8px;border-radius:99px;background:var(--line2);overflow:hidden}
+.gprog i b{display:block;height:100%;background:#17A673;border-radius:99px;width:0}
+.nav{display:flex;gap:6px;overflow-x:auto;max-width:900px;margin:0 auto;padding-bottom:4px;scrollbar-width:thin}
+.nav button{flex:0 0 auto;border:1px solid var(--line);background:var(--surface);border-radius:99px;padding:5px 12px 5px 6px;display:flex;align-items:center;gap:7px;font-weight:700;font-size:13px;color:var(--ink2)}
+.nav button .dot{width:22px;height:22px;border-radius:50%;background:var(--a-soft);color:var(--a-ink);display:grid;place-items:center;font-size:12px;font-weight:800}
+.nav button.on{background:var(--a);border-color:var(--a);color:#fff}
+.nav button.on .dot{background:#fff;color:var(--a-ink)}
+.nav button.fin .dot{background:var(--ok);color:#fff}
+.nav .sep{flex:0 0 1px;background:var(--line);margin:4px 4px}
+
+/* Hero */
+.hero{padding:30px 0 10px}
+.eyebrow{display:inline-block;font-size:12px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:var(--a-ink);background:var(--a-soft);padding:4px 10px;border-radius:99px}
+.hero h1{font-size:clamp(30px,6vw,46px);margin:12px 0 10px}
+.hero .lead{font-size:18px;color:var(--ink2);max-width:62ch}
+.story{margin-top:16px;background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:14px 16px;display:grid;gap:4px}
+.story b{font-size:12px;letter-spacing:.07em;text-transform:uppercase;color:var(--a-ink)}
+.toc{display:flex;flex-wrap:wrap;gap:6px;margin-top:14px}
+.toc a{font-size:13px;font-weight:700;text-decoration:none;color:var(--a-ink);background:var(--a-soft);padding:4px 10px;border-radius:99px}
+.toc a.ok{background:var(--ok-bg);color:var(--ok)}
+.pprog{margin-top:14px;height:8px;border-radius:99px;background:var(--line2);overflow:hidden}
+.pprog b{display:block;height:100%;width:0;background:var(--a);border-radius:99px;transition:width .3s}
+
+/* Lessons */
+.lessons{display:grid;gap:18px;margin-top:20px}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:18px;box-shadow:var(--shadow);padding:20px 20px 18px;display:grid;gap:14px;scroll-margin-top:120px}
+.card-h{display:flex;gap:12px;align-items:flex-start;justify-content:space-between}
+.card-h .t{display:flex;gap:12px;align-items:flex-start;min-width:0}
+.num{flex:0 0 auto;width:34px;height:34px;border-radius:10px;background:var(--a);color:#fff;display:grid;place-items:center;font-family:var(--head);font-weight:700}
+.card h2{font-size:clamp(20px,3.6vw,25px)}
+.qbs{display:flex;flex-wrap:wrap;gap:5px;margin-top:6px}
+.qb{font-size:11px;font-weight:800;letter-spacing:.04em;padding:2px 8px;border-radius:99px;background:var(--line2);color:var(--ink2)}
+.done{flex:0 0 auto;border:1.5px solid var(--line);background:var(--surface);border-radius:99px;padding:5px 12px;font-size:13px;font-weight:700;color:var(--ink2)}
+.done[aria-pressed="true"]{background:var(--ok-bg);border-color:var(--ok);color:var(--ok)}
+.say{display:grid;gap:8px}
+.lab{font-size:11.5px;font-weight:800;letter-spacing:.09em;text-transform:uppercase;color:var(--a-ink)}
+.say p{font-size:17.5px;line-height:1.62}
+.say p+p{margin-top:6px}
+.pic{background:var(--a-soft);border-radius:14px;padding:12px 14px;display:grid;gap:4px}
+.pic p{color:var(--a-ink);font-size:16px}
+.pts{list-style:none;margin:0;padding:0;display:grid;gap:7px}
+.pts li{position:relative;padding-left:26px}
+.pts li::before{content:"";position:absolute;left:3px;top:.38em;width:12px;height:7px;border-left:3px solid var(--a);border-bottom:3px solid var(--a);transform:rotate(-45deg)}
+.exam{border:1.5px solid var(--line);border-radius:14px;padding:12px 14px;display:grid;gap:8px}
+.gap{border:2px dashed var(--warn-line);background:var(--warn-bg);color:var(--warn-ink);border-radius:14px;padding:12px 14px;display:grid;gap:6px}
+.gap .lab{color:var(--warn-ink)}
+.gap .pts li::before{border-color:var(--warn-line)}
+.check{border-top:1px dashed var(--line);padding-top:12px;display:grid;gap:8px}
+.btn{border:0;background:var(--a);color:#fff;border-radius:10px;padding:8px 14px;font-weight:700;justify-self:start}
+.btn.ghost{background:var(--a-soft);color:var(--a-ink)}
+.btn:disabled{opacity:.45;cursor:default}
+.ans{background:var(--ok-bg);border-radius:10px;padding:10px 12px}
+
+/* Viz common */
+.viz{border:1px solid var(--line);border-radius:14px;padding:14px;background:linear-gradient(180deg,#fff,var(--bg));display:grid;gap:12px;min-width:0}
+.viz-t{font-weight:800;font-size:14px;color:var(--a-ink)}
+.chips{display:flex;flex-wrap:wrap;gap:6px}
+.chip{border:1.5px solid var(--line);background:var(--surface);border-radius:99px;padding:5px 12px;font-weight:700;font-size:14px}
+.chip.on{background:var(--a);border-color:var(--a);color:#fff}
+.panel{background:var(--a-soft);border-radius:12px;padding:12px 14px;display:grid;gap:6px;min-width:0}
+.panel .pt{font-family:var(--head);font-weight:700;font-size:18px;color:var(--a-ink)}
+.panel ul{margin:0;padding-left:18px;display:grid;gap:3px}
+.navrow{display:flex;gap:8px}
+.tw{overflow-x:auto;border-radius:10px;border:1px solid var(--line)}
+table.t{border-collapse:collapse;width:100%;min-width:520px;font-size:14.5px;background:var(--surface)}
+table.t th,table.t td{padding:8px 10px;text-align:left;vertical-align:top;border-bottom:1px solid var(--line2)}
+table.t th{background:var(--a-soft);color:var(--a-ink);font-weight:800;position:sticky;top:0}
+table.t th.k,table.t td.k{font-weight:700;color:var(--ink2);width:22%}
+table.t th[data-c]{cursor:pointer}
+table.t.spot th:not(.spot):not(.k),table.t.spot td:not(.spot):not(.k){opacity:.38}
+.hint{font-size:12.5px;color:var(--ink2)}
+.flips{display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:10px}
+.flip{border:1.5px solid var(--line);background:var(--surface);border-radius:14px;padding:12px;text-align:left;min-height:92px;display:grid;gap:4px;align-content:start}
+.flip .f{font-family:var(--head);font-weight:700;font-size:16px}
+.flip .hintt{font-size:12px;color:var(--ink2)}
+.flip.on{background:var(--a-soft);border-color:var(--a)}
+.game{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.game .col{display:grid;gap:8px;align-content:start;min-width:0}
+.gi{border:1.5px solid var(--line);background:var(--surface);border-radius:12px;padding:9px 11px;text-align:left;font-size:14.5px;font-weight:600}
+.gi.sel{border-color:var(--a);background:var(--a-soft)}
+.gi.ok{border-color:var(--ok);background:var(--ok-bg);color:var(--ok);cursor:default}
+.gi.bad{border-color:var(--bad);background:var(--bad-bg);animation:shake .3s}
+@keyframes shake{25%{transform:translateX(-4px)}75%{transform:translateX(4px)}}
+.score{font-size:13.5px;font-weight:700;color:var(--ink2)}
+.buckets{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:10px}
+.bucket{border:2px dashed var(--line);border-radius:12px;padding:8px;display:grid;gap:6px;align-content:start;min-height:84px;background:var(--surface);text-align:left}
+.bucket.hot{border-color:var(--a);background:var(--a-soft)}
+.bucket .bn{font-weight:800;font-size:13.5px;color:var(--a-ink)}
+.bucket .gi{font-size:13.5px}
+.pool{display:flex;flex-wrap:wrap;gap:6px}
+.stack{display:grid;gap:6px}
+.layer{border:0;border-radius:12px;padding:10px 14px;text-align:left;background:var(--a-soft);color:var(--a-ink);font-weight:800;display:flex;justify-content:space-between;gap:10px;align-items:center}
+.layer span{font-weight:600;font-size:13.5px}
+.layer.on{background:var(--a);color:#fff}
+.layer.on span{color:#fff}
+.axis{display:grid;grid-template-columns:auto 1fr;gap:8px;align-items:stretch}
+.axis .y{writing-mode:vertical-rl;transform:rotate(180deg);text-align:center;font-size:12px;font-weight:800;color:var(--ink2);letter-spacing:.04em}
+.quad{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.q{border:1.5px solid var(--line);background:var(--surface);border-radius:12px;padding:10px;text-align:left;display:grid;gap:2px;min-height:96px;align-content:start}
+.q b{font-family:var(--head);font-size:16px}
+.q span{font-size:13px;color:var(--ink2)}
+.q.on{background:var(--a-soft);border-color:var(--a)}
+.xlab{text-align:center;font-size:12px;font-weight:800;color:var(--ink2);letter-spacing:.04em}
+.rng{width:100%;accent-color:var(--a)}
+.big{display:flex;gap:12px;flex-wrap:wrap}
+.big>div{flex:1 1 150px;background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:10px 12px}
+.big .n{font-family:var(--head);font-size:28px;font-weight:700;color:var(--a)}
+.big .l{font-size:13px;color:var(--ink2)}
+.bars{display:grid;gap:8px}
+.bar-r{display:grid;grid-template-columns:minmax(96px,28%) 1fr auto;gap:10px;align-items:center;font-size:14px}
+.bar-r i{display:block;height:14px;border-radius:99px;background:var(--line2);overflow:hidden}
+.bar-r i b{display:block;height:100%;background:var(--a);border-radius:99px}
+.bar-r.win i b{background:#17A673}
+.sims{display:grid;gap:8px}
+.sl{display:grid;grid-template-columns:minmax(120px,34%) 1fr 40px;gap:8px;align-items:center;font-size:13.5px}
+.sl output{font-weight:800;text-align:right;font-variant-numeric:tabular-nums}
+.res{display:grid;gap:6px;font-variant-numeric:tabular-nums}
+.winner{font-weight:800;color:var(--ok);background:var(--ok-bg);padding:8px 12px;border-radius:10px}
+
+/* Quiz */
+.quiz{background:var(--surface);border:1.5px solid var(--a);border-radius:18px;padding:18px;display:grid;gap:12px;margin-top:22px}
+.quiz h3{font-size:22px}
+.opt{border:1.5px solid var(--line);background:var(--surface);border-radius:12px;padding:10px 12px;text-align:left;font-weight:600;width:100%}
+.opt:hover:not(:disabled){border-color:var(--a)}
+.opt.ok{border-color:var(--ok);background:var(--ok-bg)}
+.opt.bad{border-color:var(--bad);background:var(--bad-bg)}
+.opts{display:grid;gap:8px}
+.why{background:var(--a-soft);border-radius:10px;padding:10px 12px;color:var(--a-ink)}
+.qprog{font-size:13px;font-weight:800;color:var(--ink2)}
+.next-ch{margin-top:22px;display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap;align-items:center;background:var(--a-soft);border-radius:16px;padding:14px 16px}
+.next-ch p{color:var(--a-ink);max-width:52ch}
+
+/* Home / toolkit */
+.grid2{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:12px}
+.tile{background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:14px 16px;display:grid;gap:6px;text-align:left;box-shadow:var(--shadow)}
+.tile .eb{font-size:11.5px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:var(--a-ink)}
+.tile h3{font-size:19px}
+.tile p{font-size:14.5px;color:var(--ink2)}
+.tile .m{font-size:12.5px;font-weight:700;color:var(--a-ink)}
+.sec{margin-top:26px;display:grid;gap:12px}
+.sec>h2{font-size:24px}
+.tabs{display:flex;gap:6px;flex-wrap:wrap}
+.status{font-size:12px;font-weight:800;padding:2px 9px;border-radius:99px}
+.st-ok{background:var(--ok-bg);color:var(--ok)}
+.st-part{background:var(--warn-bg);color:var(--warn-ink)}
+.st-gap{background:var(--bad-bg);color:var(--bad)}
+.qrow{border:1px solid var(--line);background:var(--surface);border-radius:14px;padding:14px;display:grid;gap:10px}
+.qrow .qh{display:flex;gap:10px;align-items:flex-start}
+.qrow .qn{flex:0 0 auto;font-family:var(--head);font-weight:700;color:var(--a);min-width:30px}
+.qrow .qtxt{font-weight:700;font-size:16.5px}
+.qrow .qmeta{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+.qrow a{font-size:13px;font-weight:700;color:var(--a-ink)}
+.ansb{background:var(--ok-bg);border-radius:12px;padding:12px 14px;display:grid;gap:6px}
+.ansb ul{margin:0;padding-left:20px;display:grid;gap:3px}
+.marks{font-size:12px;font-weight:800;color:var(--a-ink);background:var(--a-soft);padding:1px 8px;border-radius:99px}
+.fc{background:var(--surface);border:2px solid var(--a);border-radius:20px;min-height:200px;padding:22px;display:grid;place-items:center;text-align:center;width:100%;box-shadow:var(--shadow)}
+.fc .ft{font-family:var(--head);font-size:26px;font-weight:700}
+.fc .fb{font-size:18px}
+.fc .fh{font-size:12px;color:var(--ink2);margin-top:10px;display:block}
+.fcrow{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+select{font:inherit;padding:7px 10px;border-radius:10px;border:1.5px solid var(--line);background:var(--surface);color:var(--ink);max-width:100%}
+.cs h3{font-size:19px;color:var(--a-ink);margin-bottom:6px}
+.cs .box{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:12px 14px}
+.cs ul{margin:0;padding-left:20px;display:grid;gap:3px;font-size:15px}
+.cs table.t{min-width:420px;font-size:13.5px}
+.legend{display:flex;flex-wrap:wrap;gap:10px;font-size:13.5px;color:var(--ink2)}
+.legend span{display:inline-flex;align-items:center;gap:6px}
+.sw{width:14px;height:14px;border-radius:4px;display:inline-block}
+@media (max-width:560px){
+  .game{grid-template-columns:1fr}
+  .card{padding:16px 14px}
+  .say p{font-size:17px}
+  .brand small{display:none}
+  .sl{grid-template-columns:1fr 40px}
+  .sl label{grid-column:1/-1}
+  .bar-r{grid-template-columns:1fr auto}
+  .bar-r span:first-child{grid-column:1/-1}
+}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}.gi.bad{animation:none}.pprog b{transition:none}}
+</style>
+<div id="app" class="app"></div>
+<script>
+/* ===== ENGINE ===== */
+const PHASES = [];
+const TOOLKIT = { short: [], long: [], cheat: '' };
+const $ = (s, r = document) => r.querySelector(s);
+function h(tag, attrs, ...kids) {
+  const e = document.createElement(tag);
+  for (const k in (attrs || {})) {
+    const v = attrs[k];
+    if (k === 'class') e.className = v;
+    else if (k === 'html') e.innerHTML = v;
+    else if (k.startsWith('on')) e.addEventListener(k.slice(2), v);
+    else if (v !== false && v != null) e.setAttribute(k, v === true ? '' : v);
+  }
+  kids.flat(Infinity).forEach(c => { if (c == null || c === false) return; e.append(c.nodeType ? c : document.createTextNode(c)); });
+  return e;
+}
+const md = s => String(s == null ? '' : s).replace(/\*\*(.+?)\*\*/g, '<b>$1</b>').replace(/(^|[^*\w])\*([^*\n]+?)\*(?![*\w])/g, '$1<i>$2</i>');
+const shuffle = a => { a = a.slice(); for (let i = a.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1)); [a[i], a[j]] = [a[j], a[i]]; } return a; };
+
+/* storage (per-viewer convenience only) */
+const KEY = 'itm-guide-v1';
+let S = { done: {}, quiz: {}, cards: {} };
+try { const r = localStorage.getItem(KEY); if (r) S = Object.assign(S, JSON.parse(r)); } catch (e) {}
+const save = () => { try { localStorage.setItem(KEY, JSON.stringify(S)); } catch (e) {} };
+
+/* ===== VISUALS ===== */
+const VIZ = {};
+
+/* tour: chips + panel. numbered => sequential feel with Next */
+VIZ.tour = v => {
+  const panel = h('div', { class: 'panel', 'aria-live': 'polite' });
+  const btns = v.items.map((it, i) => h('button', { class: 'chip', type: 'button', onclick: () => sel(i) }, (v.numbered ? (i + 1) + '. ' : '') + it.label));
+  let cur = 0;
+  const prev = h('button', { class: 'btn ghost', type: 'button', onclick: () => sel(cur - 1) }, '‹ Back');
+  const next = h('button', { class: 'btn', type: 'button', onclick: () => sel(cur + 1) }, 'Next ›');
+  function sel(i) {
+    if (i < 0 || i >= v.items.length) return;
+    cur = i;
+    btns.forEach((b, j) => b.classList.toggle('on', j === i));
+    const it = v.items[i];
+    panel.innerHTML = (it.title ? '<div class="pt">' + md(it.title) + '</div>' : '') + md(it.body);
+    prev.disabled = i === 0; next.disabled = i === v.items.length - 1;
+  }
+  sel(0);
+  return h('div', { class: 'viz' }, v.title && h('div', { class: 'viz-t' }, v.title), h('div', { class: 'chips' }, btns), panel,
+    v.nav !== false && h('div', { class: 'navrow' }, prev, next), v.hint && h('div', { class: 'hint' }, v.hint));
+};
+
+/* table with spotlight columns */
+VIZ.table = v => {
+  const t = h('table', { class: 't' });
+  const head = h('tr'); v.cols.forEach((c, i) => head.append(h('th', { class: i === 0 ? 'k' : '', 'data-c': i, html: md(c), onclick: () => spot(i) })));
+  t.append(h('thead', {}, head));
+  const tb = h('tbody');
+  v.rows.forEach(r => { const tr = h('tr'); r.forEach((c, i) => tr.append(h('td', { class: i === 0 ? 'k' : '', 'data-c': i, html: md(c) }))); tb.append(tr); });
+  t.append(tb);
+  let on = -1;
+  function spot(i) {
+    if (i === 0) return;
+    on = on === i ? -1 : i;
+    t.classList.toggle('spot', on > -1);
+    t.querySelectorAll('[data-c]').forEach(el => el.classList.toggle('spot', +el.dataset.c === on));
+  }
+  return h('div', { class: 'viz' }, v.title && h('div', { class: 'viz-t' }, v.title), h('div', { class: 'tw' }, t),
+    v.cols.length > 2 && h('div', { class: 'hint' }, 'Tip: tap a column heading to spotlight it.'));
+};
+
+/* flip cards */
+VIZ.flip = v => {
+  const grid = h('div', { class: 'flips' });
+  v.cards.forEach(c => {
+    const f = h('div', { class: 'f', html: md(c[0]) }); const b = h('div', { class: 'hintt' }, c[2] || 'Tap to reveal');
+    const btn = h('button', { class: 'flip', type: 'button', 'aria-expanded': 'false' }, f, b);
+    btn.addEventListener('click', () => {
+      const on = btn.classList.toggle('on'); btn.setAttribute('aria-expanded', on);
+      b.innerHTML = on ? md(c[1]) : (c[2] || 'Tap to reveal'); b.className = on ? '' : 'hintt'; b.style.fontSize = on ? '14.5px' : '';
+    });
+    grid.append(btn);
+  });
+  return h('div', { class: 'viz' }, v.title && h('div', { class: 'viz-t' }, v.title), grid);
+};
+
+/* match game: tap left then right */
+VIZ.match = v => {
+  const wrap = h('div', { class: 'viz' });
+  const score = h('div', { class: 'score' });
+  function build() {
+    wrap.innerHTML = '';
+    let sel = null, done = 0, slips = 0;
+    const L = v.pairs.map((p, i) => ({ t: p[0], i }));
+    const R = shuffle(v.pairs.map((p, i) => ({ t: p[1], i })));
+    const lb = L.map(x => h('button', { class: 'gi', type: 'button', html: md(x.t) }));
+    const rb = R.map(x => h('button', { class: 'gi', type: 'button', html: md(x.t) }));
+    const upd = () => { score.textContent = done + ' of ' + L.length + ' matched · ' + slips + ' slip' + (slips === 1 ? '' : 's') + (done === L.length ? ' · All matched!' : ''); };
+    lb.forEach((b, i) => b.addEventListener('click', () => { if (b.classList.contains('ok')) return; lb.forEach(x => x.classList.remove('sel')); b.classList.add('sel'); sel = i; }));
+    rb.forEach((b, j) => b.addEventListener('click', () => {
+      if (sel == null || b.classList.contains('ok')) return;
+      if (R[j].i === L[sel].i) { lb[sel].classList.remove('sel'); lb[sel].classList.add('ok'); b.classList.add('ok'); done++; sel = null; }
+      else { slips++; b.classList.add('bad'); setTimeout(() => b.classList.remove('bad'), 350); }
+      upd();
+    }));
+    upd();
+    wrap.append(v.title && h('div', { class: 'viz-t' }, v.title), h('div', { class: 'hint' }, 'Tap an item on the left, then tap its partner on the right.'),
+      h('div', { class: 'game' }, h('div', { class: 'col' }, lb), h('div', { class: 'col' }, rb)), score,
+      h('button', { class: 'btn ghost', type: 'button', onclick: build }, 'Shuffle & restart'));
+  }
+  build(); return wrap;
+};
+
+/* sort game: tap item, then tap bucket */
+VIZ.sort = v => {
+  const wrap = h('div', { class: 'viz' });
+  function build() {
+    wrap.innerHTML = '';
+    let sel = null, placed = 0, slips = 0;
+    const score = h('div', { class: 'score' });
+    const upd = () => { score.textContent = placed + ' of ' + v.items.length + ' placed · ' + slips + ' slip' + (slips === 1 ? '' : 's') + (placed === v.items.length ? ' · Done!' : ''); };
+    const pool = h('div', { class: 'pool' });
+    const bks = v.buckets.map((n, bi) => {
+      const body = h('div', { class: 'bn' }, n);
+      const el = h('button', { class: 'bucket', type: 'button' }, body);
+      el.addEventListener('click', e => {
+        if (e.target.closest('.gi')) return;
+        if (!sel) return;
+        if (sel.b === bi) { el.append(h('div', { class: 'gi ok', html: md(sel.t) })); sel.el.remove(); placed++; sel = null; }
+        else { slips++; sel.el.classList.add('bad'); const x = sel.el; setTimeout(() => x.classList.remove('bad'), 350); }
+        bks.forEach(b => b.classList.remove('hot')); upd();
+      });
+      return el;
+    });
+    shuffle(v.items).forEach(it => {
+      const b = h('button', { class: 'gi', type: 'button', html: md(it[0]) });
+      b.addEventListener('click', () => { pool.querySelectorAll('.gi').forEach(x => x.classList.remove('sel')); b.classList.add('sel'); sel = { t: it[0], b: it[1], el: b }; bks.forEach(x => x.classList.add('hot')); });
+      pool.append(b);
+    });
+    upd();
+    wrap.append(v.title && h('div', { class: 'viz-t' }, v.title), h('div', { class: 'hint' }, 'Tap an item, then tap the box where it belongs.'), pool,
+      h('div', { class: 'buckets' }, bks), score, h('button', { class: 'btn ghost', type: 'button', onclick: build }, 'Shuffle & restart'));
+  }
+  build(); return wrap;
+};
+
+/* clickable layer stack */
+VIZ.layers = v => {
+  const panel = h('div', { class: 'panel' });
+  const ls = v.layers.map((l, i) => h('button', { class: 'layer', type: 'button', onclick: () => sel(i) }, l.n, h('span', {}, l.short || '')));
+  function sel(i) {
+    ls.forEach((b, j) => b.classList.toggle('on', i === j));
+    const l = v.layers[i];
+    panel.innerHTML = '<div class="pt">' + md(l.n) + '</div>' + md(l.body);
+  }
+  sel(0);
+  return h('div', { class: 'viz' }, v.title && h('div', { class: 'viz-t' }, v.title), v.top && h('div', { class: 'hint' }, v.top),
+    h('div', { class: 'stack' }, ls), v.bottom && h('div', { class: 'hint' }, v.bottom), panel);
+};
+
+/* 2x2 */
+VIZ.quad = v => {
+  const panel = h('div', { class: 'panel' });
+  const cs = v.cells.map((c, i) => h('button', { class: 'q', type: 'button', onclick: () => sel(i) }, h('b', {}, c.n), h('span', {}, c.sub)));
+  function sel(i) { cs.forEach((b, j) => b.classList.toggle('on', i === j)); const c = v.cells[i]; panel.innerHTML = '<div class="pt">' + md(c.n) + '</div>' + md(c.body); }
+  sel(0);
+  return h('div', { class: 'viz' }, v.title && h('div', { class: 'viz-t' }, v.title),
+    h('div', { class: 'axis' }, h('div', { class: 'y' }, v.y), h('div', {}, h('div', { class: 'quad' }, cs), h('div', { class: 'xlab' }, v.x))), panel);
+};
+
+/* n systems -> links calculator */
+VIZ.ncalc = () => {
+  const out = h('div'); const r = h('input', { type: 'range', min: 2, max: 40, value: 10, class: 'rng', id: 'nrange', 'aria-label': 'Number of systems' });
+  function up() {
+    const n = +r.value, p2p = n * (n - 1) / 2, mx = 40 * 39 / 2;
+    out.innerHTML = '<div class="big"><div><div class="n">' + n + '</div><div class="l">systems in the company</div></div><div><div class="n" style="color:#C2372F">' + p2p + '</div><div class="l">links if every system talks to every other one (n(n−1)/2)</div></div><div><div class="n" style="color:#17804F">' + n + '</div><div class="l">links with one integration layer (about one per system)</div></div></div>' +
+      '<div class="bars" style="margin-top:10px"><div class="bar-r"><span>One-to-one</span><i><b style="width:' + (p2p / mx * 100) + '%;background:#C2372F"></b></i><span>' + p2p + '</span></div><div class="bar-r win"><span>Integration layer</span><i><b style="width:' + (n / mx * 100) + '%"></b></i><span>' + n + '</span></div></div>';
+  }
+  r.addEventListener('input', up); up();
+  return h('div', { class: 'viz' }, h('div', { class: 'viz-t' }, 'Drag: how many systems does your company run?'), r, out, h('div', { class: 'hint' }, 'From the slides: 10 systems can need 45 links, twenty can need 190.'));
+};
+
+/* bars */
+VIZ.bars = v => {
+  const mx = Math.max(...v.rows.map(r => r[1]));
+  return h('div', { class: 'viz' }, v.title && h('div', { class: 'viz-t' }, v.title),
+    h('div', { class: 'bars' }, v.rows.map(r => h('div', { class: 'bar-r' + (r[3] ? ' win' : '') }, h('span', {}, r[0]), h('i', {}, h('b', { style: 'width:' + (r[1] / mx * 100) + '%' })), h('span', {}, r[2])))), v.note && h('div', { class: 'hint' }, v.note));
+};
+
+/* big numbers */
+VIZ.big = v => h('div', { class: 'viz' }, v.title && h('div', { class: 'viz-t' }, v.title), h('div', { class: 'big' }, v.items.map(i => h('div', {}, h('div', { class: 'n' }, i[0]), h('div', { class: 'l', html: md(i[1]) })))));
+
+/* inline mini-quiz */
+VIZ.quiz = v => h('div', { class: 'viz' }, v.title && h('div', { class: 'viz-t' }, v.title), quizEngine(v.qs, null, true));
+
+/* Megatherm scorecard simulator */
+VIZ.sim = () => {
+  const crit = ['Functional fit', 'Integration', 'User experience', 'Deployment flexibility', 'Cybersecurity', 'Vendor reputation', 'Timeline', 'Post-go-live support', 'Cost / TCO'];
+  const sc = { A: [8.5, 8.0, 8.0, 9.0, 9.2, 9.0, 6.5, 8.7, 6.0], B: [7.2, 7.5, 8.5, 8.2, 7.4, 7.8, 9.0, 7.2, 9.0], C: [7.8, 7.2, 7.8, 8.0, 7.8, 8.0, 8.0, 7.5, 8.2] };
+  const dep = (f, i, u, c, t, v, cost) => [f, i, u, 0, c, v / 2, t, v / 2, cost];
+  const P = {
+    'Consensus (case)': [20, 10, 5, 10, 10, 10, 10, 10, 15],
+    'Finance': dep(25, 15, 10, 5, 10, 15, 20), 'Operations': dep(30, 10, 10, 5, 10, 20, 15), 'IT': dep(20, 20, 5, 20, 5, 15, 15),
+    'Sales & Service': dep(25, 10, 20, 5, 10, 20, 10), 'Top management': dep(20, 10, 5, 10, 15, 20, 20)
+  };
+  let w = P['Consensus (case)'].slice();
+  const res = h('div', { class: 'res' }); const sims = h('div', { class: 'sims' });
+  const outs = [], rngs = [];
+  crit.forEach((c, i) => {
+    const o = h('output', {}, w[i]); const r = h('input', { type: 'range', min: 0, max: 40, step: 1, value: w[i], class: 'rng', id: 'sw' + i, 'aria-label': c });
+    r.addEventListener('input', () => { w[i] = +r.value; draw(); });
+    outs.push(o); rngs.push(r); sims.append(h('div', { class: 'sl' }, h('label', { for: 'sw' + i }, c), r, o));
+  });
+  const btns = Object.keys(P).map(k => h('button', { class: 'chip', type: 'button', onclick: () => { w = P[k].slice(); btns.forEach(b => b.classList.toggle('on', b.textContent === k)); draw(true); } }, k));
+  btns[0].classList.add('on');
+  function draw(fromPreset) {
+    const tot = w.reduce((a, b) => a + b, 0) || 1;
+    const r = Object.keys(sc).map(k => [k, sc[k].reduce((a, s, i) => a + s * w[i] / tot, 0)]);
+    const best = Math.max(...r.map(x => x[1]));
+    res.innerHTML = '';
+    r.forEach(([k, s]) => res.append(h('div', { class: 'bar-r' + (s === best ? ' win' : '') }, h('span', {}, 'Vendor ' + k), h('i', {}, h('b', { style: 'width:' + (s / 10 * 100) + '%' })), h('span', {}, s.toFixed(2)))));
+    const win = r.find(x => x[1] === best)[0];
+    res.append(h('div', { class: 'winner' }, 'Winner with these weights: Vendor ' + win));
+    rngs.forEach((x, i) => { x.value = w[i]; outs[i].textContent = Math.round(w[i] / tot * 100) + '%'; });
+    if (!fromPreset) btns.forEach(b => b.classList.remove('on'));
+  }
+  draw(true);
+  return h('div', { class: 'viz' }, h('div', { class: 'viz-t' }, 'Megatherm scorecard simulator: whose weights decide?'),
+    h('div', { class: 'hint' }, 'Pick a department, or drag the sliders yourself. Scores for A, B and C stay fixed (Exhibit 4); only the weights change. Percentages show each weight as a share of the total.'),
+    h('div', { class: 'chips' }, btns), sims, res,
+    h('div', { class: 'hint' }, 'Departments were mapped to Exhibit 4 as the class slides did: vendor track record is split evenly between "reputation" and "post-go-live support"; "deployment flexibility" gets 0 in departmental sets because no department weighted it.'));
+};
+
+/* ===== QUIZ ENGINE ===== */
+function quizEngine(qs, onDone, inline) {
+  const box = h('div', { class: 'opts-wrap', style: 'display:grid;gap:10px' });
+  let i = 0, score = 0;
+  const order = shuffle(qs.map((q, k) => k));
+  function show() {
+    box.innerHTML = '';
+    if (i >= qs.length) {
+      box.append(h('div', { class: 'winner' }, 'You scored ' + score + ' / ' + qs.length + (score === qs.length ? ' — perfect!' : score >= qs.length * 0.7 ? ' — solid. Review the misses.' : ' — go back over the lessons, then retry.')),
+        h('button', { class: 'btn', type: 'button', onclick: () => { i = 0; score = 0; show(); } }, 'Try again'));
+      if (onDone) onDone(score, qs.length);
+      return;
+    }
+    const q = qs[order[i]];
+    const opts = h('div', { class: 'opts' });
+    const why = h('div', { class: 'why', hidden: true });
+    const nextB = h('button', { class: 'btn', type: 'button', hidden: true, onclick: () => { i++; show(); } }, i === qs.length - 1 ? 'See score' : 'Next question ›');
+    const ob = q.o.map((t, k) => h('button', { class: 'opt', type: 'button', html: md(t), onclick: () => {
+      ob.forEach((b, j) => { b.disabled = true; if (j === q.a) b.classList.add('ok'); });
+      if (k === q.a) score++; else ob[k].classList.add('bad');
+      why.hidden = false; why.innerHTML = (k === q.a ? '<b>Correct.</b> ' : '<b>Not quite.</b> ') + md(q.w || ''); nextB.hidden = false;
+    } }));
+    opts.append(...ob);
+    box.append(h('div', { class: 'qprog' }, 'Question ' + (i + 1) + ' of ' + qs.length), h('div', { style: 'font-weight:800;font-size:17px', html: md(q.q) }), opts, why, nextB);
+  }
+  show(); return box;
+}
+
+/* ===== PAGE PARTS ===== */
+const nameOf = P => P.n === 9 ? 'Toolkit' : String(P.n);
+function lessonCard(P, L, idx) {
+  const id = P.id + '-' + L.id;
+  const done = h('button', { class: 'done', type: 'button', 'aria-pressed': !!S.done[id], onclick: e => {
+    S.done[id] = !S.done[id]; save(); e.currentTarget.setAttribute('aria-pressed', !!S.done[id]); e.currentTarget.textContent = S.done[id] ? '✓ Understood' : 'Mark understood'; refreshProgress(P);
+  } }, S.done[id] ? '✓ Understood' : 'Mark understood');
+  const c = h('section', { class: 'card', id: 'l-' + id },
+    h('div', { class: 'card-h' },
+      h('div', { class: 't' }, h('div', { class: 'num' }, idx + 1), h('div', {}, h('h2', {}, L.title), (L.qb && L.qb.length) ? h('div', { class: 'qbs' }, L.qb.map(q => h('span', { class: 'qb' }, q))) : null)), done),
+    L.say && h('div', { class: 'say' }, h('div', { class: 'lab' }, 'Your teacher says'), [].concat(L.say).map(p => h('p', { html: md(p) }))),
+    L.real && h('div', { class: 'pic' }, h('div', { class: 'lab' }, 'Picture it'), h('p', { html: md(L.real) })));
+  [].concat(L.viz || []).forEach(v => c.append(VIZ[v.type](v)));
+  if (L.pts) c.append(h('div', { class: 'exam' }, h('div', { class: 'lab' }, 'Exam-ready facts'), h('ul', { class: 'pts' }, L.pts.map(p => h('li', { html: md(p) })))));
+  if (L.gap) c.append(h('div', { class: 'gap' }, h('div', { class: 'lab' }, '⚠ Not from your documents — check against class notes'), [].concat(L.gap).map(p => (Array.isArray(p) ? h('ul', { class: 'pts' }, p.map(x => h('li', { html: md(x) }))) : h('p', { html: md(p) })))));
+  if (L.check) {
+    const a = h('div', { class: 'ans', hidden: true, html: md(L.check.a) });
+    c.append(h('div', { class: 'check' }, h('div', { class: 'lab' }, 'Test yourself'), h('div', { style: 'font-weight:700', html: md(L.check.q) }),
+      h('button', { class: 'btn ghost', type: 'button', onclick: e => { a.hidden = !a.hidden; e.currentTarget.textContent = a.hidden ? 'Show the answer' : 'Hide the answer'; } }, 'Show the answer'), a));
+  }
+  return c;
+}
+function phaseProgress(P) { const n = P.lessons.length; const d = P.lessons.filter(L => S.done[P.id + '-' + L.id]).length; return [d, n]; }
+function refreshProgress(P) {
+  const [d, n] = phaseProgress(P);
+  const b = $('.pprog b'); if (b) b.style.width = (d / n * 100) + '%';
+  document.querySelectorAll('.toc a').forEach(a => a.classList.toggle('ok', !!S.done[a.dataset.id]));
+  renderGlobal();
+}
+function renderGlobal() {
+  let d = 0, n = 0; PHASES.forEach(P => { if (P.lessons) { const x = phaseProgress(P); d += x[0]; n += x[1]; } });
+  const b = $('.gprog b'); if (b) b.style.width = (n ? d / n * 100 : 0) + '%';
+  const t = $('.gprog em'); if (t) t.textContent = d + '/' + n + ' lessons';
+  document.querySelectorAll('.nav button[data-p]').forEach(bt => { const P = PHASES.find(p => p.id === bt.dataset.p); if (P && P.lessons) { const x = phaseProgress(P); bt.classList.toggle('fin', x[0] === x[1] && x[1] > 0); } });
+}
+
+function renderPhase(P) {
+  const app = h('div', { 'data-ph': P.n });
+  const hero = h('div', { class: 'hero' },
+    h('span', { class: 'eyebrow' }, P.part), h('h1', {}, 'Chapter ' + P.n + ' · ' + P.title), h('p', { class: 'lead' }, P.blurb),
+    P.story && h('div', { class: 'story' }, h('b', {}, 'Where we are in the story'), h('p', { html: md(P.story) })),
+    h('div', { class: 'toc' }, P.lessons.map((L, i) => h('a', { href: '#l-' + P.id + '-' + L.id, 'data-id': P.id + '-' + L.id, class: S.done[P.id + '-' + L.id] ? 'ok' : '', onclick: e => { e.preventDefault(); const t = document.getElementById('l-' + P.id + '-' + L.id); if (t) t.scrollIntoView({ behavior: 'smooth' }); } }, (i + 1) + '. ' + L.short))),
+    h('div', { class: 'pprog', 'aria-hidden': 'true' }, h('b', {})));
+  const list = h('div', { class: 'lessons' }, P.lessons.map((L, i) => lessonCard(P, L, i)));
+  app.append(hero, list);
+  if (P.quiz) {
+    const best = S.quiz[P.id];
+    app.append(h('div', { class: 'quiz' }, h('h3', {}, 'Chapter check-up'), h('p', { class: 'hint' }, 'Quick questions on this chapter. ' + (best != null ? 'Your best so far: ' + best + ' / ' + P.quiz.length + '.' : '')),
+      quizEngine(P.quiz, (s) => { if (S.quiz[P.id] == null || s > S.quiz[P.id]) { S.quiz[P.id] = s; save(); } })));
+  }
+  const nxt = PHASES[PHASES.indexOf(P) + 1];
+  if (nxt) app.append(h('div', { class: 'next-ch', 'data-ph': nxt.n }, h('p', { html: md(P.bridge || '') }), h('button', { class: 'btn', type: 'button', onclick: () => go(nxt.id) }, 'Next: ' + nxt.title + ' ›')));
+  setTimeout(() => refreshProgress(P), 0);
+  return app;
+}
+
+function renderHome() {
+  const core = PHASES.filter(p => p.part && p.part.startsWith('Part A'));
+  const app = h('div', { 'data-ph': 1 },
+    h('div', { class: 'hero' }, h('span', { class: 'eyebrow' }, 'IT for Managers · PGDM 26–28'), h('h1', {}, 'Your night-before study guide'),
+      h('p', { class: 'lead' }, 'Built only from the files in your repo. Nine chapters that follow one story, taught step by step in plain English, with real-world pictures, games and quick tests so you can see each idea, not only read it.')),
+    h('div', { class: 'sec' }, h('h2', {}, 'The story in one breath'),
+      h('div', { class: 'grid2' }, PHASES.map(P => h('button', { class: 'tile', type: 'button', 'data-ph': P.n, onclick: () => go(P.id) }, h('div', { class: 'eb' }, P.n === 9 ? 'Exam toolkit' : 'Chapter ' + P.n), h('h3', {}, P.title), h('p', {}, P.hook), h('div', { class: 'm' }, P.meta))))),
+    h('div', { class: 'sec' }, h('h2', {}, 'How each lesson works'),
+      h('div', { class: 'legend' }, h('span', {}, h('i', { class: 'sw', style: 'background:#E6F0FF' }), 'Your teacher says: the idea in plain words'), h('span', {}, h('i', { class: 'sw', style: 'background:#DDF5F9' }), 'Picture it: a real-world hook'),
+        h('span', {}, h('i', { class: 'sw', style: 'background:#E1F6EA' }), 'Exam-ready facts: what to write'), h('span', {}, h('i', { class: 'sw', style: 'background:#FFF6DB;border:2px dashed #E0AE2B' }), 'Dashed amber box: not in your documents')),
+      h('p', { class: 'hint' }, 'Question tags like “Q8” match the numbers in your Question Bank. Short-answer questions are numbered 1–31 in the order they appear in the QB; long-answer are L1–L8.')),
+    h('div', { class: 'sec' }, h('h2', {}, 'Suggested order for tonight'),
+      h('div', { class: 'big' }, h('div', {}, h('div', { class: 'n' }, 'First'), h('div', { class: 'l' }, 'Chapters 1–4 (the Question Bank covers these: first 5 classes). Then the Toolkit drills.')),
+        h('div', { }, h('div', { class: 'n' }, 'Then'), h('div', { class: 'l' }, 'Chapters 5–8 (sessions 6–9), at your own pace.')),
+        h('div', {}, h('div', { class: 'n' }, 'Finally'), h('div', { class: 'l' }, 'Flashcards, the mock quiz and the one-page cheat sheet in the Toolkit.')))),
+    h('div', { class: 'sec' }, h('div', { class: 'gap' }, h('div', { class: 'lab' }, '⚠ About the dashed amber boxes'),
+      h('p', { }, 'Your Question Bank asks a few things that none of the 12 files explain (for example monolith, microservices, CI/CD, IaaS/PaaS/SaaS, digitisation vs digitalisation). Where that happens I add a short standard definition in a dashed amber box so you can still answer. Those boxes are general knowledge, not from your course files. Check them against your class notes.'))));
+  return app;
+}
+
+/* ===== TOOLKIT ===== */
+function renderToolkit(P) {
+  const app = h('div', { 'data-ph': 9 });
+  app.append(h('div', { class: 'hero' }, h('span', { class: 'eyebrow' }, P.part), h('h1', {}, 'Exam Toolkit'), h('p', { class: 'lead' }, P.blurb)));
+  const body = h('div', { class: 'sec' });
+  const tabs = ['Question bank trainer', 'Flashcards', 'Mock quiz', 'One-page cheat sheet'];
+  const tb = h('div', { class: 'tabs', role: 'tablist' });
+  const tbs = tabs.map((t, i) => h('button', { class: 'chip', type: 'button', role: 'tab', onclick: () => show(i) }, t));
+  tb.append(...tbs);
+  app.append(tb, body);
+  function show(i) { tbs.forEach((b, j) => b.classList.toggle('on', i === j)); body.innerHTML = ''; body.append([qbTrainer, flashcards, mock, cheat][i]()); }
+  show(0);
+  return app;
+}
+
+const STATUS = { ok: ['Fully in your documents', 'st-ok'], part: ['Partly in your documents', 'st-part'], gap: ['Not in your documents (see amber box)', 'st-gap'] };
+function qbTrainer() {
+  const wrap = h('div', { style: 'display:grid;gap:12px' });
+  let mode = 'short';
+  const tabs = h('div', { class: 'chips' });
+  const list = h('div', { style: 'display:grid;gap:12px' });
+  const mk = (k, t) => h('button', { class: 'chip' + (k === mode ? ' on' : ''), type: 'button', onclick: e => { mode = k; [...tabs.children].forEach(c => c.classList.remove('on')); e.currentTarget.classList.add('on'); draw(); } }, t);
+  tabs.append(mk('short', 'Short answers (1–31)'), mk('long', 'Long answers (L1–L8)'));
+  function ref(q) { return q.lesson ? h('a', { href: '#' + q.lesson.split('/')[0], onclick: e => { e.preventDefault(); go(q.lesson.split('/')[0]); setTimeout(() => { const t = document.getElementById('l-' + q.lesson.replace('/', '-')); if (t) t.scrollIntoView(); }, 60); } }, 'Learn it in chapter ' + q.lesson.split('/')[0].replace('p', '') + ' ›') : null; }
+  function draw() {
+    list.innerHTML = '';
+    if (mode === 'short') TOOLKIT.short.forEach(q => {
+      const a = h('div', { class: 'ansb', hidden: true, html: md(q.a) });
+      list.append(h('div', { class: 'qrow', 'data-ph': q.ph }, h('div', { class: 'qh' }, h('div', { class: 'qn' }, 'Q' + q.n), h('div', { class: 'qtxt' }, q.q)),
+        h('div', { class: 'qmeta' }, h('span', { class: 'status ' + STATUS[q.s][1] }, STATUS[q.s][0]), ref(q)),
+        h('button', { class: 'btn ghost', type: 'button', onclick: e => { a.hidden = !a.hidden; e.currentTarget.textContent = a.hidden ? 'Reveal model answer' : 'Hide answer'; } }, 'Reveal model answer'), a));
+    });
+    else TOOLKIT.long.forEach(q => {
+      list.append(h('div', { class: 'qrow', 'data-ph': q.ph }, h('div', { class: 'qh' }, h('div', { class: 'qn' }, 'L' + q.n), h('div', {}, h('div', { class: 'qtxt' }, q.title), h('p', { class: 'hint', style: 'margin-top:4px', html: md(q.scn) }))),
+        q.tasks.map(t => {
+          const a = h('div', { class: 'ansb', hidden: true, html: md(t.a) });
+          return h('div', { style: 'display:grid;gap:8px;border-top:1px dashed var(--line);padding-top:10px' },
+            h('div', { style: 'font-weight:700' }, h('span', { class: 'marks' }, t.k + ' · 5 marks'), ' ', t.q),
+            h('div', { class: 'qmeta' }, h('span', { class: 'status ' + STATUS[t.s][1] }, STATUS[t.s][0]), ref(t)),
+            h('button', { class: 'btn ghost', type: 'button', onclick: e => { a.hidden = !a.hidden; e.currentTarget.textContent = a.hidden ? 'Reveal model answer' : 'Hide answer'; } }, 'Reveal model answer'), a);
+        })));
+    });
+  }
+  wrap.append(h('p', { class: 'hint' }, 'Try answering out loud first, then reveal. Green = fully from your documents. Yellow = part of the answer needs the amber box. Red = the files do not teach it, so the answer uses a labelled general definition.'), tabs, list);
+  draw(); return wrap;
+}
+
+function allCards() { const out = []; PHASES.forEach(P => (P.cards || []).forEach((c, i) => out.push({ id: P.id + '-' + i, t: c[0], b: c[1], ph: P.n, pt: P.title }))); return out; }
+function flashcards() {
+  const wrap = h('div', { style: 'display:grid;gap:12px;justify-items:center' });
+  const cards = allCards();
+  const sel = h('select', { id: 'fcsel', 'aria-label': 'Deck' }, h('option', { value: 0 }, 'All chapters (' + cards.length + ' cards)'), PHASES.filter(p => p.cards).map(p => h('option', { value: p.n }, 'Chapter ' + p.n + ' · ' + p.title)));
+  const only = h('select', { id: 'fcmode', 'aria-label': 'Which cards' }, h('option', { value: 'all' }, 'All cards'), h('option', { value: 'again' }, 'Only the ones I missed'));
+  let deck = [], k = 0, flipped = false;
+  const fc = h('button', { class: 'fc', type: 'button' }); const cnt = h('div', { class: 'score' }); const row = h('div', { class: 'fcrow' });
+  function build() {
+    const p = +sel.value; deck = shuffle(cards.filter(c => (p === 0 || c.ph === p) && (only.value === 'all' || S.cards[c.id] === 'again'))); k = 0; draw();
+  }
+  function draw() {
+    flipped = false;
+    if (!deck.length) { fc.innerHTML = '<div class="fb">No cards here. Pick another deck.</div>'; cnt.textContent = ''; return; }
+    if (k >= deck.length) { fc.innerHTML = '<div class="fb"><b>Deck finished.</b><br>Shuffle for another pass, or switch to “missed” cards.</div>'; cnt.textContent = deck.length + ' / ' + deck.length; return; }
+    const c = deck[k]; fc.innerHTML = '<div><div class="ft">' + md(c.t) + '</div><span class="fh">Tap to reveal · Chapter ' + c.ph + '</span></div>'; cnt.textContent = (k + 1) + ' / ' + deck.length;
+  }
+  fc.addEventListener('click', () => { const c = deck[k]; if (!c) return; flipped = !flipped; fc.innerHTML = flipped ? '<div class="fb">' + md(c.b) + '</div>' : '<div><div class="ft">' + md(c.t) + '</div><span class="fh">Tap to reveal · Chapter ' + c.ph + '</span></div>'; });
+  const mark = (v) => () => { const c = deck[k]; if (!c) return; S.cards[c.id] = v; save(); k++; draw(); };
+  row.append(h('button', { class: 'btn', type: 'button', onclick: mark('know') }, '✓ I knew it'), h('button', { class: 'btn ghost', type: 'button', onclick: mark('again') }, '↻ Need to review'), h('button', { class: 'btn ghost', type: 'button', onclick: build }, 'Shuffle'));
+  sel.addEventListener('change', build); only.addEventListener('change', build);
+  wrap.append(h('div', { class: 'fcrow' }, sel, only), cnt, fc, row);
+  build(); return wrap;
+}
+
+function mock() {
+  const wrap = h('div', { style: 'display:grid;gap:12px' });
+  const pool = []; PHASES.forEach(P => (P.quiz || []).forEach(q => pool.push(Object.assign({ ph: P.n }, q))));
+  const sel = h('select', { id: 'mocksel', 'aria-label': 'Length' }, h('option', { value: 10 }, '10 questions'), h('option', { value: 20 }, '20 questions'), h('option', { value: 30 }, '30 questions'));
+  const sc = h('select', { id: 'mockscope', 'aria-label': 'Scope' }, h('option', { value: 'core' }, 'Chapters 1–4 (Question Bank scope)'), h('option', { value: 'all' }, 'All chapters'));
+  const area = h('div');
+  function start() {
+    const p = pool.filter(q => sc.value === 'all' || q.ph <= 4);
+    const qs = shuffle(p).slice(0, +sel.value);
+    area.innerHTML = ''; area.append(quizEngine(qs));
+  }
+  wrap.append(h('p', { class: 'hint' }, 'Random questions drawn from every chapter check-up. Run it a few times; the order changes each time.'), h('div', { class: 'fcrow' }, sc, sel, h('button', { class: 'btn', type: 'button', onclick: start }, 'Start mock quiz')), area);
+  return wrap;
+}
+function cheat() { return h('div', { class: 'cs', html: TOOLKIT.cheat }); }
+
+/* ===== ROUTER ===== */
+const main = () => $('#main');
+function go(id) { location.hash = id; }
+function route() {
+  const id = (location.hash || '#start').slice(1).replace(/^l-.*$/, '') || 'start';
+  const P = PHASES.find(p => p.id === id);
+  const cur = P ? P.id : 'start';
+  document.querySelectorAll('.nav button').forEach(b => b.classList.toggle('on', b.dataset.p === cur));
+  const m = main(); m.innerHTML = '';
+  let view;
+  if (!P) view = renderHome();
+  else if (P.n === 9) view = renderToolkit(P);
+  else view = renderPhase(P);
+  m.append(view);
+  const on = document.querySelector('.nav button.on'); if (on && on.scrollIntoView) { try { on.scrollIntoView({ block: 'nearest', inline: 'center' }); } catch (e) {} }
+  window.scrollTo(0, 0);
+  renderGlobal();
+}
+function boot() {
+  const app = $('#app');
+  const nav = h('div', { class: 'nav' }, h('button', { type: 'button', 'data-p': 'start', 'data-ph': 1, onclick: () => go('start') }, h('span', { class: 'dot' }, '★'), 'Start'), h('span', { class: 'sep' }),
+    PHASES.map(P => h('button', { type: 'button', 'data-p': P.id, 'data-ph': P.n, onclick: () => go(P.id) }, h('span', { class: 'dot' }, P.n === 9 ? '✎' : P.n), P.nav)));
+  app.append(h('div', { class: 'bar' }, h('div', { class: 'bar-top' }, h('div', { class: 'brand' }, 'IT for Managers', h('small', {}, 'Study guide')), h('div', { class: 'gprog' }, h('em', { style: 'font-style:normal' }, ''), h('i', {}, h('b', {})))), nav), h('main', { id: 'main' }));
+  window.addEventListener('hashchange', () => { if (!/^#l-/.test(location.hash)) route(); });
+  route();
+}
+
+PHASES.push({
+  id: 'p1', n: 1, part: 'Part A · In your question bank', title: 'The 100-Year Story', nav: '100 Years',
+  hook: 'Five eras of IT, told by what became cheap and what became scarce.', meta: 'Session 1 reading · 10 lessons',
+  blurb: 'Before opening any engine, we look at the road behind us. A hundred years of technology squeezed into five phases, and one idea that explains all of them.',
+  story: 'We start at the beginning: how did companies end up with the technology they have today? Everything later in the course (stacks, ERP, DBS, data, AI) is a chapter of this same story.',
+  bridge: 'Now you know the five eras. Next question: inside a company today, what is the technology actually made of? That is the “stack”.',
+  lessons: [
+    { id: 'idea', short: 'The big idea', title: 'The one idea: cheap, then scarce', qb: ['Q1'],
+      say: ['Do not remember the five eras by their machines. Remember them by the **bottleneck**.',
+        'In every era, technology made one thing dramatically **cheap**. The moment that happened, something else became **scarce**, and that scarce thing decided who won. A good manager works on the new scarce thing instead of cheering for the thing that just got cheap.'],
+      real: 'A tea stall suddenly gets free gas. Boiling tea is no longer the problem, so the shortage becomes good milk and a good spot. The owner who keeps worrying about gas has missed the new bottleneck. (A teaching picture, not from the reading.)',
+      viz: { type: 'tour', title: 'Tap each phase: what got cheap, what became scarce', hint: 'Dates: 1930s–60s, 1970s–80s, 1990s–2000s, 2010s–2025, 2025 onward.', items: [
+        { label: '1 · Automate', title: 'Automate · 1930s–60s', body: '<ul><li><b>Cheap:</b> arithmetic</li><li><b>Scarce:</b> clean, coded data</li><li><b>Marker:</b> UNIVAC I, 1951: ~1,000 calculations a second, ~$1m each, ~20 sold</li><li><b>Defining tech:</b> the electronic computer</li></ul>' },
+        { label: '2 · Inform', title: 'Inform · 1970s–80s', body: '<ul><li><b>Cheap:</b> computing power</li><li><b>Scarce:</b> managerial control</li><li><b>Marker:</b> Intel 4004, 1971: a whole CPU on one chip, 2,300 transistors</li><li><b>Defining tech:</b> microprocessor, PC, LAN</li></ul>' },
+        { label: '3 · Integrate', title: 'Integrate · 1990s–2000s', body: '<ul><li><b>Cheap:</b> connectivity</li><li><b>Scarce:</b> process design</li><li><b>Marker:</b> 2000: 361 million people online, about 6% of humanity</li><li><b>Defining tech:</b> enterprise systems and the web</li></ul>' },
+        { label: '4 · Intelligence', title: 'Intelligence · 2010s–2025', body: '<ul><li><b>Cheap:</b> storage and scale</li><li><b>Scarce:</b> proprietary data</li><li><b>Marker:</b> 2025: ~6bn online (74%), 96% of them via mobile</li><li><b>Defining tech:</b> cloud, mobile, machine learning</li></ul>' },
+        { label: '5 · Autonomy', title: 'Autonomy · 2025 onward (contested)', body: '<ul><li><b>Cheap:</b> cognition</li><li><b>Scarce:</b> accountable judgement</li><li><b>Marker:</b> 2026: ~89% of firms use AI somewhere; ~20% have scaled agents</li><li><b>Defining tech:</b> agentic AI</li></ul>' }] },
+      pts: ['Define each phase by the **constraint**, not the hardware.', 'The manager’s job: work on the new constraint.', 'The five names in order: **Automate, Inform, Integrate, Intelligence, Autonomy**.'],
+      check: { q: 'In Phase 3 connectivity became cheap. What became scarce, and why does that explain why ERP programmes struggled?', a: '**Process design** became scarce. ERP programmes failed mostly on organisational grounds (people could not agree one way of working), not because the software was broken.' } },
+
+    { id: 'ph1', short: 'Phase 1 Automate', title: 'Phase 1 · Automate (1930s–60s)', qb: ['Q1', 'Q2', 'Q17'],
+      say: ['Computers arrived as giant, expensive machines. Their job was simple: replace rows of clerks doing arithmetic in the back office, in things like **payroll, ledgers and billing**.',
+        'Because the machine was a huge capital purchase, **Finance** decided whether to buy it, appraising it like a lathe in a factory. And it gave little real competitive advantage. The true bottleneck was never the sums. It was **data discipline**: the machine was useless until every input was standardised and coded.'],
+      real: 'J. Lyons & Co, a tea-shop chain, ran LEO in 1951: the first business computer. A catering company, not a computer company, ran the first business application.',
+      pts: ['**Main use:** substituting clerical labour in the back office. **Examples:** payroll, ledgers, billing.', 'ENIAC (1946): ~18,000 vacuum tubes, 30 tons. UNIVAC I delivered to the US Census Bureau, June 1951.', 'IBM System/360 announced 7 April 1964 in 63 cities across 14 countries. By 1965 IBM held **65%** of the market on **$2.5bn** revenue. Thomas Watson Jr. bet ~$5bn on it, more than the Manhattan Project.', 'Grace Hopper (compiler, COBOL) did more for adoption than anyone who built hardware.', 'Who decides spend: **Finance**. IT is for **cost reduction**. Dominant risk: a wrong-sized asset.'],
+      check: { q: 'What was the main use of IT in Phase 1? Give two examples.', a: 'Replacing clerical labour in the back office. Examples: payroll and billing (also ledgers).' } },
+
+    { id: 'ph2', short: 'Phase 2 Inform', title: 'Phase 2 · Inform (1970s–80s) and the birth of shadow IT', qb: ['Q1', 'Q3', 'Q17'],
+      say: ['Computers got small and cheap. DEC’s PDP-8 (1965) was the first computer under $20,000. Then Intel put a CPU on one chip (the 4004, 1971). Then came the Apple II (1977) and the IBM PC (1981).',
+        'IT now did two jobs at once. **Formally:** management reports and decision support. **Informally:** staff built their own spreadsheets that nobody had approved. That unofficial, unapproved technology is **shadow IT**. It is a **governance problem, not a technology problem**.'],
+      real: 'Imagine a department head who gets tired of waiting for the official report and builds her own spreadsheet. It works, so ten colleagues copy it. Now the company runs on a file IT has never seen.',
+      pts: ['**Shadow IT** = technology used without formal approval (first appeared in **Phase 2**, from unapproved spreadsheets).', 'Who decides spend: functional heads (and shadow IT). Key question: **who controls the tools?**', 'Advantage appeared only where IT changed a competitive process, not where it simply computerised an existing one.', 'DEC took a computer from $1m to $18,500 and was then destroyed by the PC its own cost curve created.', 'Same era: SAP founded 1972; TCS 1968; Infosys 1981; Wipro pivoted out of vegetable oil.'],
+      check: { q: 'What is shadow IT, and in which phase did it first appear?', a: 'Technology that staff use without formal IT approval (for example unapproved spreadsheets). It first appeared in **Phase 2 (Inform)**.' } },
+
+    { id: 'ph3', short: 'Phase 3 Integrate', title: 'Phase 3 · Integrate (1990s–2000s): ERP, the web and the CIO', qb: ['Q17', 'Q18', 'Q19', 'Q21'],
+      say: ['Two waves landed together. **Enterprise systems** put separate departments onto one shared data model. And the **web** arrived: built at CERN in 1989–90, first website August 1991, 361 million people online by 2000.',
+        'These programmes were so big and so risky that they became bet-the-company capital projects. That is why the **CIO entered the C-suite**. The money was made not by the software but by **redesigning the business process** around it. Firms that merely configured the system around their old org chart “bought a very expensive filing cabinet”.'],
+      real: 'Two shops install the same billing system. One changes how it takes orders, ships and bills. The other copies its old paper forms into the screen. Only the first gets the benefit.',
+      pts: ['**Two developments:** (1) enterprise systems / ERP (e.g. SAP, Oracle), (2) the web / internet (browser, websites).', 'Who decides spend: **CIO and board**. Key question: **what process should exist?**', 'Dominant risk: programme failure and disintermediation. Advantage came from **operating-model redesign**.', 'Leaders: Microsoft, Cisco, Oracle, SAP, Dell. Amazon (1994) and Google (1998) were widely dismissed at the time.'],
+      gap: ['**What Y2K was (Q19).** Your reading only says “Y2K remediation became India’s entry wedge into global enterprise IT”. The standard background: many old programs stored years as two digits, so the year 2000 might be read as 1900. Companies worldwide had to find and fix the code, and a lot of that work went to Indian IT firms, which gave them a way into global enterprise IT.'],
+      check: { q: 'What were the two major developments of Phase 3? Give an example of each.', a: '(1) **Enterprise systems** such as ERP from SAP or Oracle, putting functions on one data model. (2) **The web**: the first browser and website from CERN, 361m people online by 2000.' } },
+
+    { id: 'ph4', short: 'Phase 4 Intelligence', title: 'Phase 4 · Intelligence (2010s–2025): cloud, mobile and learning loops', qb: ['Q4', 'Q14', 'Q17', 'Q21'],
+      say: ['**Cloud** changed how companies pay. AWS launched in 2006 and turned IT from a big upfront purchase (**capital expenditure**) into a metered bill you pay as you use it (**operating expenditure**). **Mobile** put a networked computer in nearly every hand. **Machine learning** turned stored data into predictions.',
+        'IT now exists to run **learning loops**: the product creates data, the data improves the model, the model improves the product, and round it goes. And now **everyone decides**: business units buy software directly with a card. So the CIO shifts from **builder** to **broker and risk owner**.'],
+      real: 'Capex to opex is the difference between buying a generator for your shop and paying the electricity bill. Learning loop: the more you watch on a streaming app, the better it recommends, so you watch more. (Netflix’s personalisation “influences choice for about 80% of hours streamed”, per the Session 6 material.)',
+      pts: ['**Capex to opex:** cloud lets firms rent computing and pay per use, instead of buying machines upfront. Cost unit becomes “per unit consumed”.', '**Learning loop:** product generates data → data improves the model → model improves the product.', 'Who decides spend: **every business unit**. The CIO: from builder to **broker and risk owner**.', 'India: Jio collapsed data prices from 2016; UPI built payments at national scale.', 'Dominant risk: concentration and privacy. Key question: what does our data let us know?', 'Today’s shadow IT: 81% of SaaS spend is controlled by business units and only 56% of apps in use carry IT approval.'],
+      check: { q: 'How did cloud computing change IT spending from capital expenditure to operating expenditure?', a: 'Before cloud, firms bought machines upfront (large, irreversible capital spend). With cloud (AWS, 2006) they rent capacity and pay for what they use, so it appears as an ongoing **operating** cost that scales with use.' } },
+
+    { id: 'ph5', short: 'Phase 5 Autonomy', title: 'Phase 5 · Autonomy (2025 onward): agentic AI', qb: ['Q5', 'Q17'],
+      say: ['Earlier AI answered questions. **Agentic AI** plans and carries out tasks. Every earlier phase automated doing. This is the first to automate **judgement**: the thing you delegate is no longer a task, it is a decision.',
+        'Look at the gap. In a 2025 Gartner survey, **75%** of organisations were piloting or running some AI agent, but only **15%** were touching fully autonomous ones. That gap is about **governance** (who is accountable), not about whether the technology works.'],
+      real: 'Giving a new employee a checklist is automation. Giving them the authority to approve a customer refund by themselves is delegation of judgement. Most firms are happy with the first and nervous about the second.',
+      pts: ['**Agentic AI** = systems that plan and execute rather than only answer. Belongs to **Phase 5 (Autonomy)**.', 'McKinsey 2026 (n=1,719, 97 nations): ~9 in 10 firms use AI in at least one function; ~**20%** have scaled agents (40% of firms above $1bn revenue vs 22% below).', 'Gartner (May–June 2025, n=360): **75%** piloting/deploying some agent; only **15%** fully autonomous ones.', 'Key question: **what may we delegate?** Dominant risk: accountability and model risk.', 'Treat the phase as a hypothesis. Adoption figures are self-reported survey answers.'],
+      check: { q: 'What is agentic AI? Which phase does it belong to?', a: 'AI systems that **plan and execute** rather than only answer. They belong to **Phase 5, Autonomy** (2025 onward), the first phase that automates judgement.' } },
+
+    { id: 'who', short: 'Winners and casualties', title: 'Who led each phase, and who was destroyed', qb: ['Q21', 'Q30'],
+      say: ['Here is a pattern that surprises people: **leadership almost never carried forward**. Of the firms that led Phase 1, only IBM led Phase 2, and it led neither Phase 3 nor 4.',
+        'Why? Because **incumbency is closer to a liability than an asset**. The assets, sales force and profit margins that won the last phase make the next one look unattractive. DEC drove the price of a computer from a million dollars to seven thousand, and was destroyed by the personal computer its own cost curve made inevitable.'],
+      viz: { type: 'match', title: 'Match the clue to the company or group', pairs: [['Led Phase 1 with a 65% share in 1965', 'IBM'], ['Killed by the PC its own cost curve created', 'DEC (also Wang, Data General)'], ['Invented the GUI and Ethernet but commercialised almost nothing', 'Xerox PARC'], ['Exited computing entirely after Phase 1', 'GE and RCA'], ['Casualties of Phase 4 (mobile and digital)', 'Nokia, BlackBerry, Kodak, Blockbuster'], ['Dismissed in the 1990s, later huge', 'Amazon (1994) and Google (1998)']] },
+      pts: ['Nvidia is the rare firm that led Phase 4 after being a Phase-3 component supplier. It had no fab to defend and no x86 margin to protect, which Intel did.', 'Phase 4 leaders: AWS, Apple, Google, Microsoft, Nvidia, TSMC. Phase 5: unresolved (OpenAI, Anthropic, DeepMind on models; Nvidia on compute; Microsoft on distribution).', '**Two failures with a reason from your documents (Q30):** DEC (dismissed the PC; wrong about who would buy it) and Xerox (commercialised almost nothing it invented). Nokia, Kodak, Blockbuster and BlackBerry are named as Phase 4 casualties; the reading gives the general reason: past winning assets made the new model look unattractive.'],
+      check: { q: 'How did the role of the CIO change from Phase 3 to Phase 4?', a: 'In Phase 3 the CIO **entered the C-suite** because enterprise programmes were bet-the-company projects. In Phase 4, with everyone buying software directly, the CIO became a **broker and risk owner** rather than a builder.' } },
+
+    { id: 'india', short: 'India across the phases', title: 'India across the five phases', qb: ['Q19'],
+      say: ['India was missing in Phase 1. Then, step by step, it became a global player. Tap through to see where it appears.'],
+      viz: { type: 'tour', title: 'India’s path', items: [
+        { label: 'Phase 1', body: 'Absent.' },
+        { label: 'Phase 2', body: 'TCS founded 1968 (F.C. Kohli built a software services industry from nothing). Infosys 1981. Wipro pivoted out of vegetable oil.' },
+        { label: 'Phase 3', body: '**Decisive.** Y2K remediation became India’s entry wedge into global enterprise IT, and the global delivery model became an export industry (N.R. Narayana Murthy of Infosys, Azim Premji of Wipro).' },
+        { label: 'Phase 4', body: 'Jio collapsed data prices from 2016. UPI built payments at national scale. Nandan Nilekani: Aadhaar and UPI.' },
+        { label: 'Phase 5', body: 'Cuts both ways: the world’s largest services workforce sells exactly what is being automated, but it also holds the workflow access needed to deploy it.' }] },
+      pts: ['Phase 3 (Y2K) was the entry wedge for India’s IT industry.'] },
+
+    { id: 'cost', short: 'What happened to cost', title: 'Cost: everything got cheaper, nothing got smaller', qb: ['Q4', 'Q20'],
+      say: ['Three curves collapsed at once: storage, computation and, most recently, AI inference. The 1956 IBM RAMAC held 5 MB and leased for $3,200 a month, roughly **$10,000 per megabyte**. Hard drive cost has since fallen about **41% a year**, close to what Moore’s law describes for chips.',
+        'The twist managers get wrong: **cheaper never meant less spending**. Four orders of magnitude of unit-cost fall have never reduced IT’s share of corporate revenue, because use grows faster than price falls. This is the Jevons idea.'],
+      viz: [{ type: 'table', title: 'Cost per gigabyte of storage', cols: ['Year', 'Storage, $ per GB'], rows: [['1956', '~$2,000,000'], ['1980', '~$100,000'], ['1990', '~$10,000'], ['2000', '~$10'], ['2010', '~$0.10'], ['2017', '~$0.03'], ['2025', '~$0.01 (HDD)']] },
+        { type: 'table', title: 'The unit of cost changed in every phase', cols: ['Phase', 'Unit of cost', 'Budget line', 'Character of decision'], rows: [['1 Automate', 'Per machine', 'Capital', 'Large, irreversible, board-level'], ['2 Inform', 'Per seat, per department', 'Departmental capex', 'Small, reversible, uncontrolled'], ['3 Integrate', 'Per programme + licences', 'Multi-year capital', 'Very large, bet-the-company'], ['4 Intelligence', 'Per unit consumed', 'Operating', 'Reversible but sticky; scales with success'], ['5 Autonomy', 'Per token, per task', 'Operating, often unbudgeted', 'Usage is unpredictable']] }],
+      pts: ['Computation per gigaflop fell more than **99.99%** (2000–2017). AI inference fell **280×** ($20.00 to $0.07 per million tokens, Nov 2022–Oct 2024).', 'Three caveats: (1) **cost per token is not cost per answer** (reasoning models use many more tokens); (2) **inference is the recurring bill** (~80% of AI budget vs ~20% training); (3) **cheaper never meant less**.', 'Cost figures are order-of-magnitude approximations. Good for the shape, not for precise values.'],
+      gap: ['**What Moore’s law says (Q20).** Your reading only says hard-drive cost fell at a rate “close to what Moore’s law describes for semiconductors” and shows chips going from 2,300 transistors (1971) to 16bn (2020) to 208bn (2024). The standard definition: the number of transistors on a chip roughly doubles about every two years, so computing power per rupee keeps rising and cost keeps falling.'],
+      check: { q: 'If AI inference gets 100× cheaper again, will your firm’s AI bill fall?', a: 'Probably **not**. Consumption tends to grow faster than the unit price falls, reasoning models use more tokens per answer, and inference is the recurring bill that scales with adoption.' } },
+
+    { id: 'nolan', short: 'Which phase are you in?', title: 'Which phase is your firm really in?', qb: [],
+      say: ['Nolan’s stages-of-growth model (HBR, 1979) said a **firm** moves through IT stages in order. The phases here describe an **era**. So a 2026 firm can behave like Phase 2 while buying Phase 4 technology, and that gap is where most IT failure lives.',
+        'To diagnose, look at behaviour, not purchases. Ask three questions: where does the money go, who signs, and what is scarce?'],
+      viz: { type: 'sort', title: 'Which phase does this behaviour look like?', buckets: ['Phase 1 Automate', 'Phase 2 Inform', 'Phase 3 Integrate', 'Phase 4 Intelligence'], items: [['Only Finance signs off technology spend', 0], ['Binding constraint is clean data, not compute', 0], ['Department heads use tools IT never approved', 1], ['Most of the tech budget just maintains existing systems', 2], ['Every business unit buys software directly', 3]] },
+      pts: ['Phases are analytical devices, not history. Dates overlap and every phase is still alive somewhere.', 'Look at behaviour, not at what the firm has bought.'] }
+  ],
+  quiz: [
+    { q: 'What is the best way to define each of the five phases?', o: ['By the hardware used', 'By what became cheap and what therefore became scarce', 'By the company that led it', 'By the decade'], a: 1, w: 'The organising idea is the constraint, not the hardware.' },
+    { q: 'Which pair is correct for Phase 1 (Automate)?', o: ['Cheap: connectivity, scarce: process design', 'Cheap: arithmetic, scarce: clean coded data', 'Cheap: storage, scarce: proprietary data', 'Cheap: cognition, scarce: accountable judgement'], a: 1, w: 'Phase 1: arithmetic cheap; clean, coded data scarce.' },
+    { q: 'Shadow IT first appeared in which phase?', o: ['Phase 1', 'Phase 2', 'Phase 3', 'Phase 5'], a: 1, w: 'Phase 2 (Inform): unapproved spreadsheets and personal productivity.' },
+    { q: 'Why did the CIO enter the C-suite in Phase 3?', o: ['Because of mobile phones', 'Because enterprise programmes became bet-the-company capital projects', 'Because Finance stopped caring', 'Because of AI agents'], a: 1, w: 'ERP-type programmes were so large and risky that the CIO joined the top table.' },
+    { q: 'Cloud changed IT spending from…', o: ['Opex to capex', 'Capex to opex', 'Capex to shadow IT', 'Per-seat to per-machine'], a: 1, w: 'Capital expenditure (buy machines) became operating expenditure (pay as you use).' },
+    { q: 'Which describes a learning loop?', o: ['Staff training that repeats yearly', 'Product generates data, data improves the model, model improves the product', 'A loop in software code', 'A quarterly audit cycle'], a: 1, w: 'That is the Phase 4 definition from the reading.' },
+    { q: 'In Gartner’s 2025 survey, what share of organisations were piloting or running ANY AI agent vs fully autonomous ones?', o: ['89% and 20%', '75% and 15%', '40% and 22%', '6% and 74%'], a: 1, w: 'Gartner: 75% any agent, 15% fully autonomous. The gap is governance.' },
+    { q: 'Why did phase leadership rarely carry forward?', o: ['Regulators broke up the leaders', 'Incumbency is a liability: the assets and margins that won the last phase make the next look unattractive', 'New firms always had more money', 'India took the lead'], a: 1, w: 'DEC and the PC is the classic example.' },
+    { q: 'Which is NOT one of the three caveats about AI costs?', o: ['Cost per token is not cost per answer', 'Inference is the recurring bill', 'Cheaper never meant less', 'Training is the main recurring bill'], a: 3, w: 'Inference (~80%), not training (~20%), is the recurring bill.' }
+  ],
+  cards: [
+    ['The organising idea of the 100-year story', 'Each phase made one thing cheap, which made something else scarce. Work on the new scarce thing.'],
+    ['Phase 1 · Automate', '1930s–60s. Arithmetic cheap; clean coded data scarce. Back-office clerical work (payroll, ledgers, billing). Finance decides. IBM leads (65% in 1965).'],
+    ['Phase 2 · Inform', '1970s–80s. Computing power cheap; managerial control scarce. PC and spreadsheets. Birth of shadow IT. Intel 4004 (2,300 transistors, 1971).'],
+    ['Phase 3 · Integrate', '1990s–2000s. Connectivity cheap; process design scarce. ERP + the web. CIO enters the C-suite. Y2K was India’s entry wedge.'],
+    ['Phase 4 · Intelligence', '2010s–2025. Storage and scale cheap; proprietary data scarce. Cloud (AWS 2006), mobile, ML, learning loops. CIO becomes broker and risk owner.'],
+    ['Phase 5 · Autonomy', '2025 onward. Cognition cheap; accountable judgement scarce. Agentic AI automates judgement. 75% pilot agents; 15% fully autonomous.'],
+    ['Shadow IT', 'Technology used without formal IT approval. First appeared in Phase 2. A governance problem, not a technology one.'],
+    ['Agentic AI', 'AI that plans and executes tasks rather than only answering. Phase 5.'],
+    ['Learning loop', 'Product generates data → data improves the model → model improves the product.'],
+    ['Capex to opex (cloud)', 'Buying machines upfront became renting computing and paying per use.'],
+    ['Why leadership rarely carries forward', 'Incumbency is a liability: assets, sales force and margins that won the last phase make the next phase look unattractive (DEC and the PC).'],
+    ['Jevons / “cheaper never meant less”', 'Unit cost fell four orders of magnitude yet IT’s share of revenue never fell, because consumption grows faster than the price falls.'],
+    ['Three AI cost caveats', 'Cost per token is not cost per answer; inference (not training) is the recurring bill (~80/20); cheaper never meant less.'],
+    ['Nolan’s stages vs these phases', 'Nolan: a firm moves through stages. These phases: an era. A firm can behave like Phase 2 while buying Phase 4 tech.'],
+    ['The CIO’s journey', 'Phase 3: enters the C-suite. Phase 4: broker and risk owner, not builder.'],
+    ['Moore’s law', '(Standard definition, not in your files) transistors on a chip roughly double about every two years. Your reading: chips 2,300 (1971) → 16bn (2020) → 208bn (2024).']
+  ]
+});
+
+PHASES.push({
+  id: 'p2', n: 2, part: 'Part A · In your question bank', title: 'The Two Stacks', nav: 'Two Stacks',
+  hook: 'ATS vs ETS, the layers a company runs on, and where the money really hides.', meta: 'Session 1 slides + Session 3 ideas · 9 lessons',
+  blurb: 'A “technology stack” sounds like one thing. It is actually two. Learn to tell them apart, name the layers, and you can place almost any IT problem in the right box and ask the right person.',
+  story: 'Chapter 1 told us how technology grew. Now we open today’s company and look inside: what is it built from, and what is it run on?',
+  bridge: 'You now know the layers. The biggest single piece of the enterprise stack is the ERP, the backbone. Next we watch a real company decide about one.',
+  lessons: [
+    { id: 'two', short: 'ATS vs ETS', title: 'Two stacks, one word: ATS and ETS', qb: ['Q6', 'Q7', 'Q22'],
+      say: ['When a start-up founder and a bank CIO both say “our stack”, they mean **different things**. Mixing them up is the commonest mistake in management conversations about IT.',
+        'The **Application Technology Stack (ATS)** is what a company **builds software with**. It is tuned for **speed of change**. The **Enterprise Technology Stack (ETS)** is what a company **runs on**. It is tuned for **integrity, continuity and proof**. They fail in opposite directions, and they meet at one place: the **integration layer**.'],
+      real: 'ATS is like a food-delivery app team shipping new features several times a day. ETS is like the bank’s accounts system that must give the right number and survive an audit. Different goals, different rhythm.',
+      viz: [{ type: 'table', title: 'ATS vs ETS side by side', cols: ['', 'ATS (Application stack)', 'ETS (Enterprise stack)'], rows: [
+        ['Question it answers', 'How fast can we change our software?', 'How reliably does the company run, and can we prove it?'],
+        ['Mostly…', 'Built and assembled', 'Bought and configured'],
+        ['Typical lifespan', '3–5 years before a rewrite', '10–20 years; upgrades, not replacements'],
+        ['Release rhythm', 'Continuous, many times a day when healthy', 'Scheduled; regression-tested across every process it touches'],
+        ['Who decides', 'Product and engineering leadership', 'CIO, CFO and business process owners'],
+        ['Money shape', 'Operating spend, scales with usage', 'Capital programme plus ~22% of licence every year'],
+        ['Failure looks like', 'Outage; slow, frightening releases', 'Wrong numbers; failed audit; a migration that will not end']] },
+        { type: 'sort', title: 'Sort these into the right stack', buckets: ['ATS: builds software', 'ETS: runs the company'], items: [['SAP S/4HANA or Oracle Fusion ERP', 1], ['Workday (HR) as a system of record', 1], ['Single sign-on and MFA for all staff', 1], ['Microservices and APIs a dev team ships', 0], ['DevOps pipeline: continuous integration', 0], ['Rewritten every 3–5 years', 0], ['Upgraded, not replaced, over 10–20 years', 1], ['Failure = failed audit, wrong numbers', 1]] }],
+      pts: ['**ATS** = what a company builds software with. Optimised for **speed of change**. Lifespan 3–5 years. Fails as outages and slow releases.', '**ETS** = what a company runs on. Optimised for **integrity, continuity and proof**. Lifespan 10–20 years. Fails as wrong numbers or a failed audit.', '**Examples, ATS (Q22):** microservices, APIs, DevOps / continuous integration (named in the DBS wheel and the Session 9 platform table). **Examples, ETS:** SAP S/4HANA, Oracle Fusion (systems of record); single sign-on and MFA (identity).', 'They meet at exactly one place: the **integration layer**, where most unbudgeted enterprise cost lives.'],
+      check: { q: 'A start-up founder and a bank CIO both say “our stack”. What is each talking about, and which failure keeps each awake?', a: 'The founder means the **ATS** (what they build software with) and fears outages and slow releases. The CIO means the **ETS** (what the company runs on) and fears wrong numbers, a failed audit or a migration that will not end.' } },
+
+    { id: 'layers', short: 'Reading the stack', title: 'Reading the stack from top to bottom', qb: ['Q9'],
+      say: ['Picture the stack as five floors. Customers and staff only see the top floor. But when something goes wrong, the cause is usually several floors down.',
+        'Example from the slides: “the delivery date shown at checkout is wrong.” It is **reported at the interface**, but it lives in **integration or data**. There are four possible causes, with four different owners and costs, and only one is the web team’s problem. Naming the right layer is the first skill this course teaches.'],
+      real: 'A restaurant bill is wrong. The waiter (interface) gets blamed, but the cause may be the menu price in the system (data), or the till not talking to the kitchen screen (integration).',
+      viz: [{ type: 'layers', title: 'Tap a layer. Problems are reported at the top, caused further down.', top: '▲ what people see', bottom: '▼ what everything stands on', layers: [
+        { n: 'Interface', short: 'what the customer or employee sees', body: 'The screens, app or page people actually use. Reported problems show up here first.' },
+        { n: 'Applications', short: 'ERP, CRM, HR, warehouse', body: 'The business systems, the **systems of record**: ERP, CRM, HR, warehouse management.' },
+        { n: 'Integration', short: 'lets applications exchange information', body: 'What lets applications exchange information (APIs, gateways). Where most unbudgeted enterprise cost lives.' },
+        { n: 'Data', short: 'stores, warehouses, pipelines', body: 'Operational stores, warehouses, and the pipelines between them.' },
+        { n: 'Infrastructure', short: 'compute, storage, network', body: 'Compute, storage and network, owned or rented.' }] },
+        { type: 'quiz', title: 'Locate the layer (practice examples)', qs: [
+          { q: 'The checkout page shows the wrong delivery date even though the warehouse system has the right one. Which layer is the likely cause?', o: ['Interface only', 'Integration (the systems are not passing the date correctly)', 'Infrastructure only', 'None of them'], a: 1, w: 'The right date exists in one system but arrives wrong. That points to integration or data, not the screen.' },
+          { q: 'Two systems hold different addresses for the same customer and nobody knows which is right. Which concept is missing?', o: ['A faster server', 'A designated system of record', 'A bigger screen', 'More APIs'], a: 1, w: 'A system of record is the one that is right by definition when two systems disagree.' },
+          { q: 'The whole company’s systems slow to a crawl during a sale because capacity runs out. Which layer?', o: ['Interface', 'Applications', 'Infrastructure (compute, storage, network)', 'Governance'], a: 2, w: 'Capacity problems live in the infrastructure layer.' }] }],
+      pts: ['Five layers, top to bottom: **Interface, Applications, Integration, Data, Infrastructure**.', 'Problems are **reported at the top and caused further down**.'],
+      gap: ['**Front end vs back end (Q9).** Your slides name the layers but do not use the words “front end” and “back end”. The standard meaning: the **front end** is what users see and touch (a web page or app screen, such as the checkout page). The **back end** is the behind-the-scenes part that does the work (servers, business logic and databases, such as the system that works out the delivery date and stores the order). In your stack picture, front end ≈ the Interface layer; back end ≈ the layers below it.'],
+      check: { q: 'What is the difference between the front end and the back end of an application? Give one example of each.', a: '**Front end:** what the user sees and uses, for example a shopping app’s checkout screen. **Back end:** the servers, logic and databases behind it, for example the system that stores the order and calculates the delivery date.' } },
+
+    { id: 'six', short: 'Six enterprise layers', title: 'The enterprise stack in six layers (and what a system of record is)', qb: ['Q7', 'Q10'],
+      say: ['You will never operate these layers, but you must be able to say which one a problem belongs to, because that decides who owns it, who pays and how long it takes to change.',
+        'The key idea: a **system of record** is the one system that holds the authoritative version of a transaction, employee, customer or rupee. When two systems disagree, **this one is right by definition**. Every important thing in a firm should have exactly one system of record, and most have three.'],
+      real: 'Think of your bank passbook versus a note in your diary. If they disagree about your balance, the bank’s ledger wins. That ledger is the system of record.',
+      viz: { type: 'match', title: 'Match each layer to what it does', pairs: [['Systems of record', 'Hold the authoritative version of a transaction, employee, customer or rupee'], ['Integration', 'Move data between systems in a documented, governed way'], ['Data platform', 'Turn transaction records into something analysable across the whole firm'], ['Identity and access', 'Decide who may see and change what, and prove it afterwards'], ['Infrastructure', 'Where all of it runs'], ['Governance and security', 'Decision rights, protection, and the ability to prove compliance']] },
+      pts: ['Six layers: **systems of record, integration, data platform, identity and access, infrastructure, governance and security**.', '**System of record (Q10):** the authoritative system for an entity; right by definition when systems disagree. **Example:** SAP S/4HANA or Oracle Fusion for transactions; Salesforce for customers; Workday for employees.', 'Names you may hear: SAP S/4HANA, Oracle Fusion, Dynamics, Salesforce, Workday (systems of record); APIs and gateways, MuleSoft, Boomi, Workato, Kafka (integration); warehouse, lake, lakehouse, ETL/ELT, master data management (data); directory, single sign-on, MFA, role-based access (identity); NIST CSF 2.0, ISO 27001, SOC 2, COBIT, India’s DPDP Act (governance).'],
+      check: { q: 'What is a system of record? Give one example.', a: 'The one system designated as authoritative for a given thing (customer, employee, transaction). When systems disagree, it is right by definition. Example: **Workday for employee records** or **SAP S/4HANA for financial transactions**.' } },
+
+    { id: 'vocab', short: 'Application-stack words', title: 'The application-stack vocabulary you will be asked about', qb: ['Q8', 'Q11', 'Q23', 'Q24', 'Q26'],
+      say: ['The Question Bank asks about six terms from the “build software” side of the world. Your files only name some of them, so this lesson gives plain-English meanings (amber), then points to where your documents touch each one.'],
+      real: 'Picture a restaurant. A **monolith** is one giant kitchen doing everything: simple, but if one station breaks, dinner stops. **Microservices** are many small stalls in a food court: each can change or fail alone, but you must coordinate them. (Teaching picture only.)',
+      gap: [
+        '**Monolithic architecture (Q8):** an application built as **one single unit**, with all its parts bundled and released together. *Advantage:* simpler to build, test and deploy at first (one codebase). *Disadvantage:* a small change means redeploying everything; it is hard to scale or fix one part without touching the rest.',
+        '**Microservices (Q23):** an application split into **many small, independent services**, each doing one job and talking to the others through APIs. *Advantage:* each service can be changed, scaled or fixed on its own, so teams move faster. *Disadvantage:* many moving parts, so it is more complex to run and coordinate. Your docs: DBS’s GANDALF wheel lists “micro-services” and “API” under “Design for modern systems”.',
+        '**API (Q11):** a published, agreed way for one program to ask another program to do something or share data. *Example:* a delivery app calls a payment provider’s API to take a payment. Your docs define it in the Session 9 glossary: “a published interface another program calls, usually versioned URLs over HTTPS. On a platform it is the product surface.” DBS launched an API platform with 150 APIs and 50+ partners (McDonald’s, AIG, Foodpanda).',
+        '**CI/CD (Q24):** *Continuous Integration* = developers merge their code often and every change is automatically built and tested. *Continuous Delivery/Deployment* = tested changes are automatically released to users. *Why useful:* faster, safer, smaller releases. Your docs: “continuous integration” appears on DBS’s wheel, DBS automated its DevOps pipeline “from testing to deployment”, increasing release cadence **tenfold**, and Slide 16 says a healthy ATS releases “many times a day”.',
+        '**Cloud-native (Q26):** applications designed from the start to run on the cloud, usually built as microservices that **scale up and down automatically** and recover by themselves. *Benefit:* you pay for and use only the capacity you need, and it keeps running when one part fails. Your docs: DBS’s wheel lists “dynamic scalability” and “auto recovery”.'],
+      pts: ['The ATS words in your documents: microservices, API, DevOps, continuous integration, dynamic scalability, auto recovery, blue-green deploy, cloud security (DBS GANDALF wheel).', 'Release rhythm of a healthy ATS: continuous, many times a day (Session 1, slide 16).'],
+      check: { q: 'In one line each: monolith vs microservices, and why is CI/CD useful?', a: 'Monolith = one big unit (simple at first, but any change redeploys everything). Microservices = many small independent services (flexible, but complex to coordinate). CI/CD automatically builds, tests and releases code, so releases are faster and safer.' } },
+
+    { id: 'cloud', short: 'IaaS, PaaS, SaaS', title: 'Cloud flavours: IaaS, PaaS and SaaS', qb: ['L5A', 'Q4'],
+      say: ['“Moving to the cloud” has three common flavours. The easiest way to remember them is by how much **you** still manage.',
+        'Your slides only name them (“IaaS, PaaS, SaaS (NIST SP 800-145); private, public, hybrid”), so the explanation below is in amber.'],
+      real: 'Think of getting a meal: buy raw ingredients and cook at home (IaaS: you rent the kitchen basics), use a rented ready kitchen where you only cook your recipe (PaaS), or order a finished dish (SaaS). (Teaching picture only.)',
+      viz: { type: 'table', title: 'Who manages what', cols: ['', 'IaaS', 'PaaS', 'SaaS'], rows: [['You rent', 'Servers, storage, network', 'A ready platform to build and run your app', 'A finished application'], ['You manage', 'Operating system, apps, data', 'Your app and data', 'Just your settings and users'], ['Typical example', 'Rented servers from a cloud provider such as AWS', 'A managed app platform (e.g. Google App Engine, Azure App Service)', 'Salesforce, Workday, Oracle NetSuite, Microsoft Dynamics 365']] },
+      gap: ['**IaaS (Infrastructure as a Service):** you rent raw computing (servers, storage, network) and install and run your own software. **PaaS (Platform as a Service):** you rent a platform that already handles servers and operating systems, so you only build and run your application. **SaaS (Software as a Service):** you use a finished application over the internet, paid by subscription. **Deployment models:** *private* cloud (used by one organisation), *public* cloud (shared provider), *hybrid* (a mix).', 'Examples tie to your files: AWS (launched 2006) is named in the 100-year reading; Salesforce, Workday, Oracle NetSuite and Microsoft Dynamics are named in Sessions 1–2 as business applications. The PaaS examples are general knowledge.'],
+      pts: ['Your documents: “IaaS, PaaS, SaaS (NIST SP 800-145); private, public, hybrid” sit in the **Infrastructure** layer of the enterprise stack.', 'Megatherm’s RFP asked vendors to deploy on public cloud, private cloud, hybrid or on-premise infrastructure.'],
+      check: { q: 'Describe IaaS, PaaS and SaaS. Give one example of each.', a: '**IaaS:** rent raw servers/storage/network (e.g. AWS). **PaaS:** rent a platform to build and run your app without managing servers (e.g. Google App Engine). **SaaS:** use finished software by subscription (e.g. Salesforce or Workday).' } },
+
+    { id: 'integ', short: 'Integration layer', title: 'The integration layer: where the cost hides', qb: ['Q11', 'Q25'],
+      say: ['No company runs one system. The average organisation manages **957 applications**, and only **27%** of them are connected to anything. The other 73% are islands, and every island is a manual process, a spreadsheet, or a person retyping data.',
+        'Why does the **integration layer** exist? Because connecting systems one to one explodes. Ten systems can need 45 links; twenty can need 190. Route everything through one managed integration layer and you need about one link per system.'],
+      real: 'Ten friends who each phone every other friend need 45 phone lines. One WhatsApp group needs ten. The group is the integration layer. (Teaching picture only.)',
+      viz: { type: 'ncalc' },
+      pts: ['**Integration layer (Q25):** the layer that lets applications exchange information in a documented, governed way. **Why needed:** it stops one-to-one connections multiplying (n(n−1)/2 links) and makes data flows controllable.', '957 apps on average, 27% connected; 36% of IT’s time goes on custom integrations; 81% of SaaS spend is controlled by business units (Salesforce Connectivity Benchmark 2026; Zylo 2026).', '“The second-most expensive thing in an enterprise landscape is having an integration layer. The most expensive is **not** having one.”', 'AI link: an agent can only act through an interface that exists, is documented and governed; 94% of IT leaders say agents will make architecture more API-driven.', 'Example of an API in use: DBS’s API platform, launched 2017 with 150 APIs across 20+ categories (Q11).'],
+      check: { q: 'What is an integration layer? Give one reason it is needed.', a: 'The layer that lets applications exchange information in a documented, governed way. Needed because direct system-to-system links multiply quickly (n(n−1)/2) and become unmanageable.' } },
+
+    { id: 'quad', short: 'Operating-model 2×2', title: 'Standardise or customise: the operating-model 2×2', qb: ['L6A'],
+      say: ['This is the framework your professor reuses all course: Ross, Weill and Robertson (MIT CISR). It asks two questions about a company: **how much do its processes need to be the same everywhere** (standardisation), and **how much does its data need to be shared** (integration)?',
+        'There is **no best quadrant**. Standardising kills local responsiveness; integrating kills local autonomy. The failure is not choosing the wrong one. It is **never choosing**, then buying technology that assumes an answer nobody agreed to.'],
+      real: 'A chain of petrol pumps that must work identically everywhere (high standardisation) versus a holding company whose businesses barely interact (low on both). Technology bought for one is wrong for the other.',
+      viz: [{ type: 'quad', title: 'Tap a quadrant', x: 'PROCESS STANDARDISATION (low → high)', y: 'DATA INTEGRATION (low → high)', cells: [
+        { n: 'Coordination', sub: 'Shared customers, unique processes', body: 'Example: **Merrill Lynch**. High data integration, low process standardisation.' },
+        { n: 'Unification', sub: 'One business, one way of working', body: 'Example: **UPS**. High on both. This is where Megatherm sits, or intends to be: one plant, one product family, one data model.' },
+        { n: 'Diversification', sub: 'Independent units, few shared needs', body: 'Example: **Pacific Life**. Low on both.' },
+        { n: 'Replication', sub: 'Same process, run independently', body: 'Example: **7-Eleven Japan**. High process standardisation, low data integration.' }] },
+        { type: 'sort', title: 'Place the company in its quadrant', buckets: ['Coordination', 'Unification', 'Diversification', 'Replication'], items: [['UPS: one business, one way of working', 1], ['Merrill Lynch: shared customers, unique processes', 0], ['Pacific Life: independent units, few shared needs', 2], ['7-Eleven Japan: same process, run independently', 3]] }],
+      pts: ['Two axes: **process standardisation** and **data integration**. Four models: **Coordination, Unification, Diversification, Replication**.', '**Configure vs customise (L6A):** *configuring* uses the system’s built-in settings (cheap, supported, survives upgrades). *Customising* changes the system to fit current habits (paid once in cash and **forever in upgrade cost**).', 'Listen for “we will configure that” (cheap) vs “we will customise that” (neither supported nor cheap).'],
+      check: { q: 'What is the difference between configuring and customising? Why does customisation raise long-term cost?', a: 'Configuring uses supported built-in settings and survives upgrades. Customising changes the software itself, so it is paid for once in cash and **forever in upgrade cost**: every upgrade must retest and redo the changes. It also tends to produce a heavily modified system that cannot be upgraded.' } },
+
+    { id: 'gov', short: 'Governance, security, compliance', title: 'Governance, security and compliance are three different questions', qb: [],
+      say: ['People use these words as if they mean one thing. They do not. A company can be **secure but non-compliant**, or **compliant but insecure**. Both are common.',
+        '**Governance:** who has the right to decide, and who answers for the outcome. **Security:** are the systems and data protected from a hostile party. **Compliance:** can you show an external, sceptical person that you did what the law and your own policy require.'],
+      viz: { type: 'flip', title: 'NIST CSF 2.0: six functions to ask about by name', cards: [['GOVERN', 'Who decides and answers for security.'], ['IDENTIFY', 'Know what you have and what is at risk.'], ['PROTECT', 'Safeguards that reduce the chance of harm.'], ['DETECT', 'Spot a problem quickly.'], ['RESPOND', 'What you do when something happens.'], ['RECOVER', 'Get back to normal after an incident.']] },
+      pts: ['Most security briefings are heavy on PROTECT, thin on DETECT and RESPOND, silent on RECOVER.', 'Global average data-breach cost 2026: **$4.99m** (record, +12%). India: **₹25.5cr** (+15.9%). One in four malicious breaches is AI-enabled.', '**DPDP Act penalty:** up to **₹250cr per breach** (per breach, not per year, not a share of turnover) for failing reasonable security safeguards. DPDP Rules notified Nov 2025; main obligations expected around **May 2027**.'],
+      check: { q: 'Name the six NIST CSF 2.0 functions.', a: 'GOVERN, IDENTIFY, PROTECT, DETECT, RESPOND, RECOVER.' } },
+
+    { id: 'money', short: 'Where the money goes', title: 'Where the money actually goes (and the six questions to ask)', qb: [],
+      say: ['Two facts explain most enterprise IT budgets. First, **22% of the licence value, every year, goes on maintenance** (SAP’s list rate, and Oracle’s works out to the same: $47,500 licence, $10,450 support). A licence is not a purchase, it is a purchase plus a subscription nobody called one. It repays its own price roughly every four and a half years.',
+        'Second, about **half of a technology budget runs what already exists** (run) rather than builds something new (change). So the real question about a new system is not “what does it cost to build?” but “what does it add to the permanent floor?”'],
+      viz: { type: 'flip', title: 'Six questions to take into any technology conversation', cards: [
+        ['1 · Which stack?', 'Shipping software fast (ATS) and running the company reliably (ETS) are different decisions with different owners.'],
+        ['2 · What operating model?', 'What does this assume, and have we agreed to it? If not, project management will not fix it.'],
+        ['3 · Configure or customise?', 'One is supported and survives upgrades; the other is paid once in cash and forever in upgrade cost.'],
+        ['4 · How many systems?', 'Four systems through documented APIs is a quarter’s work; through undocumented interfaces it is a project.'],
+        ['5 · Run vs change?', 'Judge a system by what it adds to the permanent floor, not what it costs to build.'],
+        ['6 · Worst-case data loss?', 'Name the regulation, the notification clock and the maximum penalty.']] },
+      pts: ['Run vs change: ~**50%** of budget maintains what exists (Deloitte: 55% maintaining operations vs 19% innovation).', 'Be careful with failure stats: “most ERP projects fail” is **not supported**. Panorama’s 2026 report (n=170) finds just over a quarter over budget and just under a quarter over schedule. The consistent cause is **organisational, not technical**.', 'Why enterprise programmes fail: the organisation was asked to agree on one way of doing things, could not, and resolved it by buying customisation.'],
+      check: { q: 'Why is a licence “an annuity”?', a: 'At ~22% of licence value per year (escalating with inflation), maintenance repays the licence price roughly every 4.5 years, so it is a purchase plus a subscription nobody called one.' } }
+  ],
+  quiz: [
+    { q: 'ATS is optimised for…', o: ['Integrity and proof', 'Speed of change', 'Lowest cost', 'Legal compliance'], a: 1, w: 'ATS = speed of change. ETS = integrity, continuity and proof.' },
+    { q: 'A typical ETS lifespan is…', o: ['3–5 years', '10–20 years', '1 year', '50 years'], a: 1, w: 'ETS: 10–20 years, upgrades not replacements. ATS: 3–5 years before rewrite.' },
+    { q: 'The two stacks meet at…', o: ['The interface', 'The integration layer', 'The data warehouse', 'The board'], a: 1, w: 'The integration layer is where most unbudgeted cost lives.' },
+    { q: 'A “system of record” is…', o: ['The fastest system', 'The system that is right by definition when two systems disagree', 'A backup tape', 'A reporting tool'], a: 1, w: 'It is the authoritative system for that entity.' },
+    { q: 'With n systems linked one-to-one you may need up to…', o: ['n links', 'n(n−1)/2 links', '2n links', 'n² links'], a: 1, w: '10 systems → 45 links; 20 → 190.' },
+    { q: 'Which operating model is “one business, one way of working”?', o: ['Replication', 'Diversification', 'Unification', 'Coordination'], a: 2, w: 'Unification (UPS). Megatherm is arguably here.' },
+    { q: 'Configuring vs customising: which is true?', o: ['Customising is cheaper and supported', 'Configuring survives upgrades; customising is paid for forever in upgrade cost', 'They are the same', 'Configuring means rewriting code'], a: 1, w: 'Configure = supported settings. Customise = changes that must be redone each upgrade.' },
+    { q: 'Which NIST CSF function is most often missing from security briefings?', o: ['PROTECT', 'RECOVER', 'GOVERN', 'IDENTIFY'], a: 1, w: 'Briefings are heavy on PROTECT, thin on DETECT/RESPOND, and silent on RECOVER.' },
+    { q: 'Annual maintenance on a licence (SAP/Oracle list) is about…', o: ['5%', '10%', '22%', '50%'], a: 2, w: '22% of licence value, every year.' },
+    { q: 'DPDP maximum penalty for failing reasonable security safeguards is…', o: ['₹25cr per year', '₹250cr per breach', '4% of turnover', '₹2.5cr per breach'], a: 1, w: '₹250 crore per breach, a statutory maximum, not a share of turnover.' }
+  ],
+  cards: [
+    ['ATS', 'Application Technology Stack: what a company builds software with. Speed of change. 3–5 years. Fails as outages and slow releases.'],
+    ['ETS', 'Enterprise Technology Stack: what a company runs on. Integrity, continuity, proof. 10–20 years. Fails as wrong numbers or a failed audit.'],
+    ['Integration layer', 'The one place ATS and ETS meet. Lets applications exchange information in a governed way; stops n(n−1)/2 link explosion.'],
+    ['System of record', 'The one system that is right by definition when systems disagree (e.g. Workday for employees).'],
+    ['Five stack layers', 'Interface, Applications, Integration, Data, Infrastructure. Problems are reported at the top, caused further down.'],
+    ['Six enterprise layers', 'Systems of record, integration, data platform, identity & access, infrastructure, governance & security.'],
+    ['Operating-model 2×2', 'Process standardisation × data integration → Coordination, Unification, Diversification, Replication.'],
+    ['Unification / Replication', 'Unification = one business one way (UPS). Replication = same process run independently (7-Eleven Japan).'],
+    ['Configure vs customise', 'Configure = supported settings, survives upgrades. Customise = changes paid once in cash and forever in upgrade cost.'],
+    ['Governance / security / compliance', 'Who decides / protected from hostile parties / can prove it to outsiders. A firm can be secure but non-compliant.'],
+    ['NIST CSF 2.0 functions', 'GOVERN, IDENTIFY, PROTECT, DETECT, RESPOND, RECOVER.'],
+    ['22% rule', 'Annual maintenance ≈ 22% of licence value; repays the licence price every ~4.5 years.'],
+    ['Run vs change', '~50% of tech budget runs what exists. Judge new systems by what they add to the permanent floor.'],
+    ['957 and 27%', 'Average organisation runs 957 apps; only 27% are connected to anything.'],
+    ['Monolith', '(Standard definition) one single bundled application; simple at first, but any change redeploys everything.'],
+    ['Microservices', '(Standard definition) many small independent services talking via APIs; flexible but complex. DBS wheel lists micro-services.'],
+    ['CI/CD', '(Standard definition) automatic build, test and release of code. DBS automated DevOps → release cadence 10×.'],
+    ['Cloud-native', '(Standard definition) built for the cloud: scales automatically and self-recovers. DBS wheel: dynamic scalability, auto recovery.'],
+    ['IaaS / PaaS / SaaS', '(Standard definition) rent servers / rent a platform to build on / use finished software. E.g. AWS / app platform / Salesforce.'],
+    ['Front end vs back end', '(Standard definition) front end = what users see; back end = servers, logic and databases behind it.'],
+    ['API', 'A published interface another program calls (versioned URLs over HTTPS). On a platform it is the product surface. DBS API platform: 150 APIs.'],
+    ['DPDP penalty', 'Up to ₹250cr per breach for failing reasonable security safeguards; main obligations expected around May 2027.']
+  ]
+});
+
+PHASES.push({
+  id: 'p3', n: 3, part: 'Part A · In your question bank', title: 'ERP and the Megatherm Case', nav: 'ERP & Megatherm',
+  hook: 'The backbone system, and a company that must choose one.', meta: 'Session 2 · Megatherm case · 9 lessons',
+  blurb: 'ERP is the biggest decision inside the enterprise stack. We learn what it is, the four cycles it runs, then step into the CEO’s chair at Megatherm.',
+  story: 'You can now name the layers of a company’s technology. ERP touches all of them at once. Here is a real mid-sized Indian manufacturer that has to pick one.',
+  bridge: 'Megatherm shows a company choosing a system. Next: DBS, a whole bank that rebuilt itself around technology.',
+  lessons: [
+    { id: 'erp', short: 'What an ERP is', title: 'What an ERP really is', qb: ['L1A'],
+      say: ['An ERP (Enterprise Resource Planning) is **not just software. It is a shared data model with modules on top.** Finance, procurement, inventory, manufacturing, sales and service all use **one definition** of a customer, a part, a cost centre, a transaction.',
+        'The value: a sale recorded once updates inventory, receivables, the production plan and the ledger in one motion. The cost: every function must **accept one definition of the same object**. Sales, plant and finance must agree what “delivered” means. That negotiation is the real implementation. Installing the software is the easy part.'],
+      real: 'A family business where the shop, the godown and the accountant each keep their own notebook. ERP is one shared notebook everyone writes in.',
+      viz: { type: 'tour', numbered: true, title: 'One sale, recorded once', items: [{ label: 'Sale entered', body: 'A sale is recorded in the shared data model.' }, { label: 'Inventory', body: 'Stock falls automatically.' }, { label: 'Receivables', body: 'Money owed by the customer rises.' }, { label: 'Production plan', body: 'The production plan adjusts.' }, { label: 'Ledger', body: 'The accounting ledger updates, all in one motion.' }] },
+      pts: ['**ERP (L1A):** a suite of integrated applications on one shared data model that standardises and automates core functions across departments (single source of truth).', '**Four functions for Megatherm:** Finance and Controlling; Procurement (materials management); Production planning/manufacturing; Sales and Distribution (also CRM, after-sales service, SRM, logistics).', 'ERP projects fail “not due to technology limitations, but due to misalignment between system functionality, organizational needs, and implementation readiness” (the case).'],
+      check: { q: 'What is an ERP system? Name four functions it would integrate for Megatherm.', a: 'Integrated software on one shared data model giving a single source of truth. For Megatherm: **finance, procurement, manufacturing/production planning, and sales and distribution** (plus service, CRM, logistics).' } },
+
+    { id: 'ea', short: 'Architecture layers', title: 'ERP is an architecture decision, not a purchase', qb: [],
+      say: ['Enterprise architecture is the argument for why you have the stack you have. It has four layers, and ERP touches all four.', 'A decision made only in the fourth box (cloud or on-premise, which vendor, how much) is a technology purchase. Made in the first box it is an architecture decision. Megatherm did the fourth well and the first barely at all.'],
+      viz: { type: 'table', title: 'Four architecture layers', cols: ['Layer', 'What it covers', 'Question'], rows: [['Business', 'Which processes exist, who owns them', 'Which processes must be identical across plants and countries?'], ['Data', 'What an entity means, where it is mastered', 'Where is “customer” mastered, and is there exactly one answer?'], ['Application', 'Which systems exist, what each is record for', 'One suite, or core plus best-of-breed?'], ['Technology', 'Compute, storage, network, integration, identity', 'Public, private, hybrid or on-premise?']] },
+      pts: ['ERP is “a business-architecture decision wearing an application-layer costume”.', 'Nowhere in the case does anyone state Megatherm’s operating model. The evaluation runs on vendor features. That absence is the real finding.'] },
+
+    { id: 'cycles', short: 'Four cycles', title: 'The four cycles every ERP runs (P2P, O2C and more)', qb: ['L2A', 'L2B'],
+      say: ['Learn the **cycles**, not the module names. Vendors rename modules, but the cycles have not changed in thirty years.', 'Procure-to-Pay is how you buy and pay. Order-to-Cash is how you sell and get paid. Plan-to-Produce is how you make things. Record-to-Report is how everything ends up in the books.'],
+      real: 'P2P is a tea shop buying milk: ask, order, receive, check the bill against what was ordered and received, pay. O2C is the reverse: customer asks, you quote, deliver, bill, collect.',
+      viz: [{ type: 'tour', title: 'Tap a cycle', items: [
+        { label: 'Procure to Pay (P2P)', title: 'Procure to Pay · Materials Management', body: '**Requisition → purchase order → goods receipt → invoice → three-way match → payment.** Where fraud and duplicate payment live. The three-way match is the control (checks the order, the goods received and the invoice agree).' },
+        { label: 'Order to Cash (O2C)', title: 'Order to Cash · Sales and Distribution', body: '**Enquiry → quote → order → availability check → despatch → invoice → collection → cash application.** Where revenue recognition and the e-invoicing clock live. Touches CRM and service.' },
+        { label: 'Plan to Produce', title: 'Plan to Produce · Production Planning', body: '**Demand plan → master schedule → material requirements → works order → shop floor → finished goods.** Where the bill of materials lives. For Megatherm the hardest cycle to standardise (engineer-to-order, long lead times).' },
+        { label: 'Record to Report', title: 'Record to Report · Finance and Controlling', body: '**Sub-ledger postings → period close → reconciliation → consolidation → statutory and management reporting.** What a listed company is audited on. Every other cycle drains into it.' }] },
+        { type: 'sort', title: 'Which cycle does each step belong to?', buckets: ['Procure to Pay', 'Order to Cash'], items: [['Purchase order', 0], ['Goods receipt', 0], ['Three-way match', 0], ['Payment to supplier', 0], ['Quote', 1], ['Availability check', 1], ['Despatch', 1], ['Cash application', 1]] }],
+      pts: ['**P2P steps (L2A):** requisition, purchase order, goods receipt, invoice, three-way match, payment.', '**O2C steps (L2B):** enquiry, quote, order, availability check, despatch, invoice, collection, cash application.', 'Megatherm’s RFP asked for all four cycles plus CRM, after-sales service, SRM and logistics: a full-suite scope for 550 employees and one plant.'],
+      check: { q: 'Describe Procure-to-Pay and list its main steps.', a: 'The end-to-end cycle for buying and paying: requisition → purchase order → goods receipt → invoice → three-way match → payment. The three-way match is the key control against fraud and duplicate payment.' } },
+
+    { id: 'meg', short: 'Meet Megatherm', title: 'The story: Megatherm Induction Limited', qb: [],
+      say: ['Megatherm, based in Kolkata, makes **induction heating and melting equipment** for foundries and steel makers. One plant at Kharagpur runs near full capacity, selling to **50+ countries**. In **February 2024** it listed on the NSE SME platform at an **83.33% premium**.',
+        'The IPO brought capital but also pressure: investors now expected transparency and scalability. Its legacy systems could not give real-time data. In January 2025 the CEO, **Chanda**, must decide, with the board expecting a recommendation.'],
+      viz: [{ type: 'big', title: 'Megatherm at a glance (FY24)', items: [['$37.12m', 'revenue (up from $25.41m in FY22)'], ['13.6%', 'EBITDA margin'], ['6.8%', 'profit after tax margin'], ['9%', 'of revenue spent on R&D (~$3.34m)'], ['550+', 'employees; 55 R&D engineers, 17 PhDs']] },
+        { type: 'tour', title: 'Four gaps in the old systems, and how the team decided', items: [
+          { label: 'Legacy gaps', body: '<ul><li>Reporting manual and delayed</li><li>Procurement and inventory not integrated</li><li>Finance struggles with audit: inconsistent data, weak traceability</li><li>Customer service has no central tracking or escalation</li></ul>' },
+          { label: 'Define-Evaluate-Select', body: '**Define:** departments document processes and requirements into an RFP. **Evaluate:** weighted scoring and the **M-D-N** method (must-have, desired, nice-to-have), balanced-scorecard thinking, value analysis. **Select:** pick the balance of readiness and scalability, not the cheapest or the most features.' },
+          { label: 'Timeline', body: 'Feb 2024 IPO → Mar–Apr governance reforms and independent board → May ERP flagged → Jun–Jul team under the CIO → Aug RFP → Sep–Oct demos → Nov TCO and weights → Dec scoring → Jan 2025 board → Feb 2025 CEO decides.' }] }],
+      pts: ['A **request for proposal (RFP)** lists requirements sent to vendors. The CIO led the project team.', 'The case: ERP selection is “a strategic commitment, not a transactional purchase”.'] },
+
+    { id: 'opts', short: 'Five options', title: 'The five options on the table', qb: [],
+      say: ['Three vendors (anonymised A, B, C) plus two strategic alternatives. Here is the key point: **options 4 and 5 were never scored or costed.** The scoring model was built to choose between vendors, not to ask whether to buy one.'],
+      viz: [{ type: 'flip', title: 'Tap each option for its bet', cards: [
+        ['1 · Vendor A', '**Score 8.1 · 5-yr TCO $2.02m.** Full suite, deep functionality, private cloud/on-premise, embedded security. 9+ month implementation, heavy change management. Bet: capability bought now is cheaper than retrofitted later.'],
+        ['2 · Vendor B', '**Score 7.8 · TCO $1.19m.** Modular, low upfront cost, fast, hybrid cloud, intuitive. Thin manufacturing analytics, no clear roadmap. Bet: speed and cash matter more than a roadmap you cannot see.'],
+        ['3 · Vendor C', '**Score 7.8 · TCO $1.50m.** Middle path; public cloud; relies on third-party integrations for analytics and manufacturing. Bet: balance is a strategy.'],
+        ['4 · Defer (Stabilise and Integrate)', 'Integration platform, targeted upgrades, dashboards; no suite replacement. Preserves capital, buys 12–18 months of process discipline; delays one unified data model. The only genuinely reversible option.'],
+        ['5 · Hybrid (best-of-breed)', 'Lean ERP core plus best-of-breed for manufacturing, analytics, customer engagement. Closer fit, no single-suite lock-in, but high integration complexity and needs strong architecture stewardship.']] }],
+      pts: ['Vendor A: most capable, highest cost, longest timeline. Vendor B: cheapest and fastest, thinnest. Vendor C: middle, relies on integrations.', 'Integration capability carried only **10%** weight, the lowest-weighted item that will cause the most trouble.'] },
+
+    { id: 'sim', short: 'Scorecard simulator', title: 'Play with the scorecard: whose weights decide?', qb: [],
+      say: ['Scoring models look objective but are “compressed opinions with arithmetic around them”. Try it: pick a department and watch the winner change.'],
+      viz: { type: 'sim' },
+      pts: ['Printed totals: A 8.1, B 7.8, C 7.8 (recomputed 8.04 / 7.93 / 7.83). Spread is only **0.21 points, 2.6%**: inside the noise.', 'Operations, IT and Sales and Service weights favour **Vendor A**. **Finance and Top Management** favour **Vendor B** (Top Mgmt: B 8.01 vs A 7.76).', 'The consensus model is an **average of five conflicting models**, one nobody actually holds.', 'The model certifies all three vendors are acceptable. It does not identify a winner.'],
+      check: { q: 'Why can changing whose weights you use change the winner?', a: 'Each department weights criteria differently (e.g. Finance stresses cost, Operations stresses functionality). Scores are fixed, so different weights produce different totals. Averaging conflicting preferences yields a result nobody holds.' } },
+
+    { id: 'tco', short: 'Cost vs the P&L', title: 'Put the money against the company’s real P&L', qb: [],
+      say: ['Absolute numbers make a cost argument; **proportions usually unmake it.** Most people guess the priciest option is a double-digit share of revenue. It is about 1.1% a year.'],
+      viz: { type: 'bars', title: '5-year TCO as % of FY24 revenue ($37.12m)', rows: [['Vendor A ($2.02m)', 5.4, '5.4%'], ['Vendor B ($1.19m)', 3.2, '3.2%', true], ['Vendor C ($1.50m)', 4.0, '4.0%']], note: 'As % of one year’s profit after tax (~$2.52m): A 80%, B 47%, C 59%.' },
+      pts: ['A over B costs **$0.83m** more over five years: $166,000 a year, **0.45%** of revenue, about 5% of one year’s R&D ($3.34m).', 'Counter-argument: still a third of one year’s PAT, and A’s nine-month timeline drains management attention in the first listed year.', 'Missing from every column: **data migration, productivity dip after go-live, cost of exit.** Exhibit 5A is a vendor-cost model, not a total-cost model.', 'TCO categories: licence, implementation and customisation, hosting, training and change management, annual maintenance, post-deployment support.'] },
+
+    { id: 'unscored', short: 'What no scorecard scores', title: 'What no scorecard can score', qb: [],
+      say: ['The manager’s real job lies in what a matrix cannot hold. Tap each card.'],
+      viz: { type: 'flip', cards: [['Absorptive capacity', 'Can 550 people in one plant absorb a nine-month reengineering while delivering the first full year of listed results? Vendor A’s risk is attentional, not technical.'], ['Decision rights', 'Who may approve a customisation after go-live? If unsettled, every option ends as a heavily modified system that cannot be upgraded.'], ['Reversibility', 'B: cheap to enter, costly to leave. A: costly both ways. Option 4 is the only genuinely reversible choice.'], ['The capability bought', 'Not software: close books faster, quote an export order without a spreadsheet, answer an auditor in a day.']] },
+      pts: ['Megatherm’s likely operating model: **Unification** (one plant, one product family, 50+ countries), but nobody in the case says so.', 'Takeaway: **the scoring model was built to choose between vendors. It was never built to ask whether to buy one.**', 'Questions for the CEO: whose weights? what do you stop doing? what would make you reverse in 12 months?'] },
+
+    { id: 'cloud', short: 'On-prem vs cloud', title: 'On-premise vs cloud ERP (and benefits and risks)', qb: ['L1B', 'L5B'],
+      say: ['The CFO prefers keeping the existing on-premise system; the CIO wants cloud. The case frames it as **control** (on-premise) versus **scalability, cost-effectiveness and faster deployment** (cloud). In India, 71% of new ERP licences are now cloud.'],
+      viz: { type: 'table', title: 'On-premise vs cloud ERP', cols: ['', 'On-premise', 'Cloud'], rows: [['Cost', 'Large upfront licence and own servers, plus ~22% of licence in annual maintenance (capital programme)', 'Lower upfront; subscription/hosting costs over time (operating). Case: “cost-effective”'], ['Maintenance', 'Your IT team patches and upgrades; you pay vendor maintenance', 'Largely the provider’s job *(inferred)*'], ['Scalability', 'Limited by your own hardware', 'Scales on demand; faster deployment (case)'], ['Control', 'Complete control of governance and data (case)', 'Less direct control *(inferred)*; residency and security rules matter']] },
+      pts: ['**3 benefits of cloud ERP:** scalability; lower upfront, cost-effective; faster deployment (all from the case). Also less data-centre footprint (DBS).', '**2 risks:** dependence on the vendor and lock-in/roadmap (Vendor B has no clear roadmap); data security, compliance and residency (DPDP readiness was in Megatherm’s RFP); also integration complexity with third-party add-ons. *(Risks are inferred from the documents, not listed there.)*', 'Cloud TCO line in Megatherm’s model: “cloud hosting and infrastructure”.'],
+      check: { q: 'Give three benefits and two risks of moving Megatherm’s ERP to the cloud.', a: 'Benefits: scalability, lower upfront cost, faster deployment. Risks: vendor dependence or lock-in, and data security/compliance/residency concerns (or integration complexity).' } },
+
+    { id: 'india', short: 'India, GST and vendors', title: 'India, e-invoicing, GST and the vendor market', qb: ['L6A', 'L6B'],
+      say: ['For most Indian mid-market firms, **compliance, not strategy, forces the ERP decision.** E-invoicing applies above ₹5 crore turnover since August 2023, and since April 2025 firms above ₹10 crore must report every invoice to the portal within 30 days or lose input tax credit.',
+        'An ERP helps because the invoice is created inside the **order-to-cash** cycle: if billing, tax data and reporting sit on one data model, the invoice is generated and reported to the portal from the same record, with an audit trail. *(The link to O2C is from the slides; the mechanism is explained simply.)*'],
+      viz: [{ type: 'big', items: [['$1.24bn', 'India ERP market, 2026 (16.1% CAGR to 2031)'], ['71%', 'of new Indian ERP licences are cloud'], ['21.4 crore', 'e-invoices in June 2026 from 8.6 lakh GSTINs']] },
+        { type: 'table', title: 'Global ERP league (2025 revenue)', cols: ['Vendor', 'Revenue', 'Growth', 'Known for'], rows: [['Oracle', '$9.72bn', '+11%', 'Fusion for enterprise; NetSuite mid-market'], ['SAP', '$9.61bn', '+11%', 'Manufacturing; Business One for SMEs'], ['Microsoft', '$3.23bn', '+13%', 'Dynamics 365; Business Central for SMEs'], ['Sage', '$2.46bn', '+10%', 'Accounting-led mid-market'], ['Infor', '$1.90bn', '+2%', 'Industry CloudSuites'], ['Workday', '$1.42bn', '+15%', 'Finance and HR for service firms']] },
+        { type: 'tour', title: 'SAP’s maintenance cliff', items: [{ label: 'Through 2027', body: 'Mainstream maintenance for SAP ECC and Business Suite 7 at standard fee.' }, { label: '2028–2030', body: 'Optional extended maintenance at +2 percentage points.' }, { label: 'After 2030', body: 'Customer-specific maintenance only: no new patches or legal updates.' }, { label: 'Through 2040', body: 'SAP commits to keep an S/4HANA release in maintenance.' }] }],
+      pts: ['**E-invoicing (L6B):** raising invoices in a government-specified electronic format and reporting them to the GST portal, required above set turnover limits. Missing the 30-day window loses input tax credit.', '**Configure vs customise at Megatherm (L6A):** department heads wanted the ERP changed to match current habits. That is customisation: paid once in cash and forever in upgrade cost, and it blocks upgrades. Megatherm’s RFP itself asked for “configurability without heavy customization”.', 'Top two vendors hold only ~13% of a fragmented market; market-size estimates ($145.6bn vs ~$66bn) differ by definition.'],
+      check: { q: 'What is e-invoicing and how can an ERP help Megatherm with GST?', a: 'Invoices created in a prescribed electronic format and reported to the government portal (above ₹10 crore within 30 days or lose input tax credit). An ERP with one data model in its order-to-cash cycle produces and reports compliant invoices from the same record, with an audit trail.' } }
+  ],
+  quiz: [
+    { q: 'An ERP is best described as…', o: ['A single accounting program', 'A shared data model with modules on top', 'A website builder', 'A backup system'], a: 1, w: 'One shared data model; modules sit on top.' },
+    { q: 'The three-way match belongs to which cycle?', o: ['Order to Cash', 'Procure to Pay', 'Record to Report', 'Plan to Produce'], a: 1, w: 'P2P: it is the control against fraud and duplicate payment.' },
+    { q: 'Which is the correct O2C order?', o: ['Quote → enquiry → order', 'Enquiry → quote → order → availability check → despatch → invoice → collection → cash application', 'Order → quote → enquiry', 'Invoice → order → despatch'], a: 1, w: 'That is the O2C sequence from Session 2.' },
+    { q: 'Which options were never scored or costed in Megatherm’s model?', o: ['A and B', 'Defer and Hybrid', 'B and C', 'A and C'], a: 1, w: 'Options 4 (Defer) and 5 (Hybrid).' },
+    { q: 'Which vendor has the lowest 5-year TCO?', o: ['A ($2.02m)', 'B ($1.19m)', 'C ($1.50m)', 'Hybrid'], a: 1, w: 'Vendor B at $1.19m.' },
+    { q: 'Which departments’ weights favour Vendor B?', o: ['Operations and IT', 'Finance and Top Management', 'Sales and IT', 'None'], a: 1, w: 'Finance and Top Management pick B.' },
+    { q: 'Integration capability carried what weight in the scoring?', o: ['10%', '30%', '50%', '0%'], a: 0, w: '10%: joint-lowest weight for the thing that causes most trouble.' },
+    { q: 'Megatherm’s likely operating model is…', o: ['Diversification', 'Unification', 'Replication of many plants', 'Coordination'], a: 1, w: 'One plant, one product family, one data model: Unification.' },
+    { q: 'Customisation raises long-term cost because…', o: ['It is free initially', 'Changes must be redone with every upgrade', 'It removes support fees', 'It speeds go-live'], a: 1, w: 'Paid once in cash and forever in upgrade cost.' },
+    { q: 'E-invoicing reporting window for firms above ₹10 crore (from April 2025)?', o: ['30 days', '7 days', '1 year', '90 days'], a: 0, w: '30 days, or lose input tax credit.' }
+  ],
+  cards: [
+    ['ERP', 'Shared data model with modules on top: one definition of customer, part, transaction. Single source of truth.'],
+    ['Four ERP cycles', 'Procure to Pay, Plan to Produce, Order to Cash, Record to Report.'],
+    ['P2P steps', 'Requisition → purchase order → goods receipt → invoice → three-way match → payment.'],
+    ['O2C steps', 'Enquiry → quote → order → availability check → despatch → invoice → collection → cash application.'],
+    ['Four EA layers', 'Business, Data, Application, Technology.'],
+    ['Megatherm in one line', 'Kolkata induction-furnace maker, IPO Feb 2024, 550 staff, one plant, 50+ countries, choosing an ERP.'],
+    ['Five options', 'Vendor A (8.1, $2.02m), B (7.8, $1.19m), C (7.8, $1.50m), Defer, Hybrid. Last two not scored.'],
+    ['Scorecard lesson', 'Spread 0.21 (2.6%) is noise; weights decide; consensus is an average nobody holds.'],
+    ['TCO vs P&L', 'Vendor A TCO = 5.4% of FY24 revenue; ~1.09% per year; 80% of one year’s PAT.'],
+    ['Takeaway', 'The scoring model was built to choose between vendors, never to ask whether to buy one.'],
+    ['On-prem vs cloud', 'On-prem = control, upfront cost, ~22% maintenance. Cloud = scalability, lower upfront, faster deployment. 71% of new Indian licences are cloud.'],
+    ['E-invoicing', 'Above ₹10 crore: report every invoice to the portal within 30 days or lose input tax credit.'],
+    ['SAP cliff', 'Mainstream maintenance to 2027; extended 2028–30 (+2pp); none after 2030; S/4HANA to 2040.'],
+    ['M-D-N', 'Must-have, Desired, Nice-to-have prioritisation of requirements.']
+  ]
+});
+
+PHASES.push({
+  id: 'p4', n: 4, part: 'Part A · In your question bank', title: 'DBS: A Bank That Became a Tech Company', nav: 'DBS',
+  hook: '“Damn Bloody Slow” to one of the world’s leading digital banks.', meta: 'Session 5 case · 9 lessons',
+  blurb: 'Everything so far, in one company: stacks, data, culture and AI, rebuilt over about fourteen years.',
+  story: 'We have seen how technology evolved, what it is made of, and how a company picks a backbone. Now see a whole organisation transform itself around technology.',
+  bridge: 'DBS showed that AI rests on data. Part B digs under the hood: where data lives and how it moves.',
+  lessons: [
+    { id: 'why', short: 'Why change', title: 'Why DBS had to change', qb: ['Q15'],
+      say: ['DBS (Singapore) was nicknamed **“Damn Bloody Slow”**: ranked lowest in customer service among Singapore’s largest banks. CEO **Piyush Gupta** joined in 2009 and decided to think differently, with board backing and a large budget.',
+        'The outside world pushed too. COVID-era mobile banking use rose 34% while branch banking fell 12%. Branches ate 30% of a typical bank’s costs and legacy IT another 20%. Digital challengers ran at a 26% cost-to-income ratio against 60% for traditional banks. Fintechs like PayPal were worth more than some big banks.'],
+      viz: { type: 'big', items: [['US$6.02bn', 'net profit FY2022 (+20%)'], ['S$150m + S$25m', 'extra revenue and loss-prevention/productivity from AI in 2022'], ['~S$1bn', 'invested in technology each year for four years'], ['9% / 13%', 'income / net-profit CAGR in the first years']] },
+      pts: ['Motivation: worst service ranking, stalled growth, 22,000 staff, and technology mostly outsourced (slow to change).', 'Another success story in your documents: Loblaw, Ping An, Progressive (DBS Exhibit 6). **Q15:** DBS turned from a slow bank into a digital leader; Loblaw grew from grocer to Canada’s largest healthcare software platform.'] },
+
+    { id: 'pillars', short: 'Three pillars', title: 'Digital transformation: the whole-organisation approach', qb: ['Q12', 'Q13', 'Q27'],
+      say: ['DBS did not bolt on a chatbot. It used a **whole-organisation approach** with three pillars: **be digital to the core, embed in the customer journey, think and act like a start-up.** Even Audit and HR had to digitalise.',
+        'Other banks added standalone AI features (chatbots, face recognition at ATMs) that were “incremental, independent changes that did not affect core processes”. That is the difference between **digital transformation and just buying technology**.'],
+      real: 'Fitting a smartphone holder in an old car is not the same as redesigning how you travel.',
+      pts: ['Audit used analytics then machine learning (branch risk profiling, trading fraud, credit risk). HR used models for top-performer traits and attrition.', 'Digital transformation here = changing technology, processes, culture and customer experience across the whole organisation, not isolated tools (Q12, Q27).'],
+      gap: ['**Digital transformation (Q12):** using digital technology to fundamentally change how an organisation operates and delivers value, which needs culture change, not just new tools. *Example:* DBS.', '**Digitisation vs digitalisation (Q13):** *Digitisation* = converting something analogue into digital form (scanning a paper cheque or form into a file). *Digitalisation* = using digital technology to change how a process works (the cheque deposited by photo on a mobile app, approved and settled online). Digital transformation is the larger change to the whole business.', '**Business-model transformation (Q28):** changing how a company creates and earns money. Your docs: DBS entered e-marketplaces and a carbon exchange; Amazon moved from retailer to marketplace to infrastructure (Session 9 reading).', '**Why serving one more customer costs almost nothing (Q29):** digital goods and services are copied or delivered by software, so the cost of one extra user is close to zero. Your docs: platforms have marginal cost “close to nothing for one more interaction”; eKYC onboarding at near-zero marginal cost.'],
+      check: { q: 'How is digital transformation different from simply buying new technology?', a: 'Buying technology adds a tool. Transformation changes the whole organisation (processes, culture, customer journey). DBS ran a whole-organisation programme; other banks added isolated, incremental AI features.' } },
+
+    { id: 'tech', short: 'Overhaul and GANDALF', title: 'Overhauling technology, and the GANDALF wheel', qb: ['Q24', 'Q23'],
+      say: ['The first six years went into rebuilding the base: technology and operations merged into one unit, processes made lean, a new enterprise architecture and a new core banking system **live in 12 markets in 28 months**. Two councils (Customer Experience and Innovation) pushed culture.',
+        'In 2015 the bank coined **GANDALF**: Google, Amazon, Netflix, Apple, LinkedIn, Facebook, with the **D** for DBS joining those tech giants.'],
+      viz: { type: 'flip', title: 'GANDALF “cheese wheel”: five ideas', cards: [['Shift from project to platform', 'Product governance, funding model, agile product management, product owners, modern design principles.'], ['Organise for success', 'Biz-tech organisation, DevOps organisation, service-oriented organisation.'], ['Design for modern systems', 'Micro-services, API, dynamic scalability, auto recovery, DevOps, instrumentation, blue-green deploy, cloud security.'], ['Develop high-performing agile teams', 'Autonomous teams, Scrum, Kanban, scaled agile, agile metrics.'], ['Automate everything', 'Continuous integration, release and test automation, hybrid cloud, auto scaling and monitoring.']] },
+      pts: ['Automating the DevOps pipeline from testing to deployment increased release cadence **tenfold** (CI/CD in practice, Q24).', 'Early AI work failed too: a 2013 AI lab with A*STAR (mixed results) and a large IBM Watson wealth-management pilot with no successful outcome.'] },
+
+    { id: 'watson', short: 'Early failures', title: 'The Watson pilot and the lesson', qb: ['L7B'],
+      say: ['Early efforts failed. DBS ran a **large-scale pilot with IBM’s Watson for wealth management**, “without a successful outcome”. The learning: agile approaches are a must; start with a **minimum viable product** and fine-tune over time, instead of delivering a fully elaborate solution after a long wait.'],
+      pts: ['**Lesson (L7B):** start small (MVP), iterate with agile methods, learn from failures. Gupta called the joint A*STAR projects “signalling tools” for the organisation.'],
+      check: { q: 'What happened with DBS’s Watson pilot and what is the lesson?', a: 'A large-scale Watson wealth-management pilot did not succeed. Lesson: use agile delivery, begin with a minimum viable product and refine it over time rather than building a full solution first.' } },
+
+    { id: 'wins', short: 'Early wins', title: 'Early wins: ATM, IVR, AML and Digibank India', qb: ['L3B', 'L7A', 'L8B'],
+      say: ['DBS created early wins to build belief. Match each project to what it achieved.'],
+      viz: { type: 'match', title: 'Match the project to its result', pairs: [['ATM predictive maintenance (2014)', 'Out-of-cash occurrences down 90%+; fewer reload trips'], ['IVR interception, Singapore contact centre', 'Calls shortened 30 seconds; satisfaction 3.5 → 4.1; volumes −8%'], ['AML machine-learning filter + Cruise case management', 'Analysts handle about a third more cases, with fewer false alerts'], ['Digibank India (2016)', 'Mobile-only bank; Aadhaar onboarding; customers ~6×, transactions 12× at same call-centre headcount']] },
+      pts: ['**IVR:** retail contact centre got 5–6m interactions a year, over 80% phone. AI predicts the reason for the call and routes it or sends the customer to the app.', '**AML:** old rules produced up to 98% false positives. A machine-learning model scored risk; lowest-risk cases “hibernate” 90 days; graph “network link”; Cruise integrates it all. Rules could not be removed because of regulation.', '**Digibank India (L8B):** launched 2016 as India’s first mobile-only bank and first to use Aadhaar/biometric for all-digital onboarding.', '**Moving off physical servers (L8A):** by 2020, 99% of applications had been migrated from physical servers to a virtual private cloud. Benefits: scale computing as data grows, lower data-centre footprint, faster deployment.', 'Three AI areas for L3B: ATM cash/maintenance, call-centre routing (IVR), anti-money-laundering; also attrition prediction and personalised “nudges”.'],
+      check: { q: 'Describe two examples of how DBS used AI in customer service or operations.', a: '(1) IVR interception: predicts why a customer calls and routes them quickly, cutting call time by 30 seconds and raising satisfaction from 3.5 to 4.1. (2) AML scoring: a model ranks suspicious cases so analysts handle about a third more with better accuracy.' } },
+
+    { id: 'people', short: 'Talent and culture', title: 'People, culture and reskilling', qb: ['Q31'],
+      say: ['Technology alone would not have worked. DBS moved from **85% outsourcing toward 85% insourcing** (“building our timber”): hiring tech talent, becoming an employer of choice, and reskilling existing staff.'],
+      viz: { type: 'tour', title: 'Culture levers', items: [{ label: 'Hiring', body: 'Hiring spree from 2015; about 200 technology professionals (data scientists, AI experts) in 2017; ex-Google, Yahoo, Huawei.' }, { label: 'DigiFY', body: 'Seven digital skills (journey thinking, agile, data driven, digital business, digital technologies, digital communication, risk and controls). Over 80% of staff by 2020.' }, { label: 'Data Heroes, hack2hire', body: 'Six-month Data Heroes to make data translators; hack2hire engaged ~5,000 employees.' }, { label: 'Experiments', body: 'KPI of **1,000 experiments a year**; Gupta “opened the wallet” so units could hire quasi data scientists (HR’s JIM app; attrition model with ~147 data inputs).' }, { label: 'Reskilling', body: 'Call-centre staff no longer taking calls became live-chat agents and customer-experience designers.' }] },
+      pts: ['**Why changing behaviour matters (Q31):** (1) people must use new tools and processes or the technology yields nothing; (2) a data-driven, start-up culture lets experiments and fast change happen; (3) reskilling avoids layoffs and fills skill gaps. (Also: Megatherm’s case says ERP fails from misalignment with organisational readiness.)'] },
+
+    { id: 'data', short: 'Data First and ADA', title: 'Data First, the cloud and the ADA platform', qb: ['L4A', 'L8A'],
+      say: ['AI depends on **accessible data**, so in 2018 DBS launched **Data First** with four pillars: analytics capability, culture and curriculum, enablement of data usage, technology platforms. “Everything goes cloud.”',
+        'It built **ADA (Advancing DBS with AI)**, a **data platform** for data ingestion, security, storage, governance, visualisation and AI-model management, aiming at **self-service** for staff. By 2020 over 90% of the organisation used ADA.'],
+      pts: ['**Data platform (L4A):** one shared place and toolset to collect, store, govern and analyse data so teams can build models themselves.', '**Why before scaling AI:** AI models are only as good as the data they can reach; without a common platform each team rebuilds pipelines, data is inconsistent and AI cannot scale.', 'Housekeeping: data moved from warehouses to cheaper **data lakes**; **80 million** incomplete records cleaned; a **Responsible Data Use Committee** formed.', 'An in-house library of 250+ AI use cases means teams reuse instead of rebuilding.'],
+      check: { q: 'What is a data platform and why did DBS build one before scaling AI?', a: 'A shared environment for ingesting, storing, governing, analysing and managing models on data (ADA). AI needs accessible, clean, governed data; a common platform lets many teams build and reuse AI quickly and safely.' } },
+
+    { id: 'box', short: 'Two-in-a-box, PURE', title: 'Two-in-a-box and the PURE principles', qb: ['L4B'],
+      say: ['DBS paired a **business lead and a technology lead** in a **“two-in-a-box”** structure with **joint KPIs**, so both own one result. It was introduced to support the Data First culture and deliver a joined-up customer experience, instead of business and tech blaming each other.',
+        'For ethics, DBS checks every data use against **PURE**.'],
+      viz: { type: 'flip', cards: [['P · Purposeful', 'Data use should be purposeful.'], ['U · Unsurprising', 'Data use should be expected by individuals or corporates.'], ['R · Respectful', 'Data use should respect social norms.'], ['E · Explainable', 'Data use should be explainable as to how and why.']] },
+      pts: ['**Two-in-a-box (L4B):** business and technology leads share ownership and joint KPIs.'] },
+
+    { id: 'scale', short: 'Scaling and results', title: 'Scaling AI, new businesses and the results', qb: ['Q28', 'L3A'],
+      say: ['By 2023 DBS had 100+ AI/ML algorithms using 15,000 customer data points, producing about **30 million personalised nudges a month** in Singapore (such as duplicate-payment alerts), lifting customer response 10–12%.'],
+      viz: { type: 'tour', title: 'Main changes (L3A) in order', items: [{ label: '2009', body: 'Gupta starts; whole-organisation drive; three pillars.' }, { label: '2009–15', body: 'Overhaul technology and operations; core banking in 12 markets in 28 months; councils.' }, { label: '2013–15', body: 'AI lab and Watson failures; GANDALF; early wins (ATM 2014).' }, { label: '2015–17', body: 'Insource talent; Digibank India 2016; RPA with IBM 2017; API platform (150 APIs).' }, { label: '2018–20', body: 'Data First; everything to cloud; ADA; 99% off physical servers; DigiFY.' }, { label: '2021–23', body: 'Carbon exchange CIX; 30m nudges a month; 200+ data use cases, 700+ experts.' }] },
+      pts: ['**New business avenues (business-model change):** e-marketplaces (Car, Electricity, Property, Carousel), carbon exchange Climate Impact X (2021), partner **API platform** (150 APIs, 50+ firms), POSB Smart Buddy.', 'RPA: 100+ complex processes automated by 2020 with an IBM Centre of Excellence (2017).', '**Scale:** 200+ data use cases (150+ AI), 700+ data and analytics experts.', 'Weaker: partnership revenue fell short of expectations (partly COVID).', 'Six value drivers of “all in on AI” firms: speed, cost reduction, comprehension of complexity, transformed engagement, fuelled innovation, fortified trust.', 'What next: LLMs, 5G, IoT, blockchain, and digital banks like Grab (licence 2022).'] }
+  ],
+  quiz: [
+    { q: 'DBS’s nickname before transformation was…', o: ['Digital Banking Solutions', 'Damn Bloody Slow', 'Dynamic Bank Singapore', 'Data Bank System'], a: 1, w: 'Damn Bloody Slow.' },
+    { q: 'Which is NOT one of DBS’s three pillars?', o: ['Digital to the core', 'Embed in the customer journey', 'Think and act like a start-up', 'Outsource all technology'], a: 3, w: 'DBS moved toward insourcing.' },
+    { q: 'What was the Watson lesson?', o: ['Never use AI', 'Use agile and start with a minimum viable product', 'Buy more vendors', 'Avoid pilots'], a: 1, w: 'Agile plus MVP, refined over time.' },
+    { q: 'What does ADA stand for?', o: ['Advancing DBS with AI', 'Automated Data Analytics', 'Advanced Digital Apps', 'AI Data Archive'], a: 0, w: 'ADA is the data platform.' },
+    { q: 'Two-in-a-box means…', o: ['Two banks merge', 'A business lead and tech lead with joint KPIs', 'Two data centres', 'Two CEOs'], a: 1, w: 'Joint ownership of results.' },
+    { q: 'What share of applications moved from physical servers to a virtual private cloud by 2020?', o: ['50%', '75%', '99%', '10%'], a: 2, w: '99%.' },
+    { q: 'Digibank India (2016) was notable for…', o: ['A branch network', 'Mobile-only banking with Aadhaar-based digital onboarding', 'Crypto trading', 'ATMs only'], a: 1, w: 'India’s first mobile-only bank and first Aadhaar all-digital onboarding.' },
+    { q: 'PURE stands for…', o: ['Purposeful, Unsurprising, Respectful, Explainable', 'Private, Useful, Real, Ethical', 'Protected, Unique, Reliable, Efficient', 'Planned, Used, Reviewed, Enforced'], a: 0, w: 'The responsible-data-use test.' },
+    { q: 'What did automating the DevOps pipeline achieve?', o: ['Halved staff', 'Ten-fold release cadence', 'Removed the cloud', 'Closed branches'], a: 1, w: 'Release cadence up tenfold.' },
+    { q: 'In the AML project, old rule-based systems produced up to what share of false positives?', o: ['10%', '50%', '98%', '5%'], a: 2, w: 'Up to 98%.' }
+  ],
+  cards: [
+    ['DBS in one line', 'Singapore bank, “Damn Bloody Slow” in 2009, became a leading digital bank under CEO Piyush Gupta.'],
+    ['Three pillars', 'Digital to the core; embed in the customer journey; think and act like a start-up.'],
+    ['GANDALF', 'Google, Amazon, Netflix, Apple, LinkedIn, Facebook, and D for DBS. Five ideas on the cheese wheel.'],
+    ['Watson lesson', 'Pilot failed; learn agile, MVP, iterate.'],
+    ['Early wins', 'ATM (2014, out-of-cash −90%), IVR (30 sec saved, CSAT 3.5→4.1), AML (a third more cases), Digibank India.'],
+    ['Data First (2018)', 'Four pillars: analytics capability, culture and curriculum, data usage enablement, tech platforms.'],
+    ['ADA', 'Advancing DBS with AI: data platform for ingestion, security, storage, governance, visualisation, model management.'],
+    ['Two-in-a-box', 'Business + technology leads with joint KPIs.'],
+    ['PURE', 'Purposeful, Unsurprising, Respectful, Explainable.'],
+    ['Insourcing', 'From 85% outsourced to 85% insourced; “building our timber”.'],
+    ['DigiFY', 'Seven digital skills; 80%+ of staff by 2020.'],
+    ['Off physical servers', '99% of apps moved to virtual private cloud; “everything goes cloud”.'],
+    ['Digital transformation', '(Standard definition) fundamentally changing how an organisation operates using digital tech, with culture change.'],
+    ['Digitisation vs digitalisation', '(Standard definition) analogue→digital form vs using digital to change a process.'],
+    ['Results', 'Net profit +20% to US$6.02bn (FY22); AI added S$150m revenue + S$25m savings (2022); 30m nudges a month.']
+  ]
+});
+
+PHASES.push({
+  id: 'p5', n: 5, part: 'Part B · Data and AI (Session 6)', title: 'Where Data Lives', nav: 'Where Data Lives',
+  hook: 'Why your system cannot answer questions about your business.', meta: 'Session 6 · 7 lessons',
+  blurb: 'DBS went “Data First”. Here is what that means underneath: the two jobs systems do, the kinds of data, and the six eras of storage.',
+  story: 'DBS showed that AI rests on data. Before moving data, we must know where it lives.',
+  bridge: 'Now you know where data lives. Next: how it moves, and who decides what it means.',
+  lessons: [
+    { id: 'davenport', short: 'Competing on analytics', title: 'Why data became a strategy question', say: ['Thomas Davenport (HBR, 2006): products and technology converge, so **business processes are among the few remaining points of differentiation**, and “analytics competitors” (Amazon, Capital One, Harrah’s, Boston Red Sox) wring value from them. Davenport also co-wrote the DBS case.', 'His test has four parts, and **three are organisational**: sponsored from the top; managed at enterprise level (not four definitions of customer); multiple initiatives; hired for judgement. The binding constraint is almost never the algorithm.'], pts: ['Whether you can compete on analytics is settled by architecture years earlier.'] },
+    { id: 'jobs', short: 'OLTP vs OLAP', title: 'Two jobs, two machines: OLTP and OLAP', say: ['Systems do two different jobs. **OLTP** runs the business: thousands of tiny, must-be-correct writes (orders, payments). **OLAP** asks questions about it: one huge read over millions of rows. The same database cannot do both well, so there is always a **copy**, and “our numbers do not match” is born in the gap.'], real: 'The till (OLTP) versus the annual sales analysis (OLAP). Running the analysis on the live till could freeze the shop.',
+      viz: { type: 'table', cols: ['', 'OLTP', 'OLAP'], rows: [['Job', 'Running the business', 'Asking about the business'], ['Pattern', 'Thousands of tiny reads/writes', 'One enormous read'], ['Needs', 'Correct, never lost', 'Approximately right is often fine'], ['Examples', 'ERP, core banking, point of sale', 'Warehouse, dashboards, board pack']] },
+      pts: ['When IT says a report “cannot be run against production”, that is architecture, not obstruction.'] },
+    { id: 'kinds', short: 'Three kinds of data', title: 'Three kinds of data', say: ['**Structured** data has fixed rows and columns (invoices). **Semi-structured** has labels but no fixed table (logs, sensor readings, JSON). **Unstructured** has no structure (contracts, email, call recordings, photos). Twenty years ago most useful data was structured; today most new data is not, and estates built before 2015 mostly handle only the first.'],
+      viz: { type: 'sort', buckets: ['Structured', 'Semi-structured', 'Unstructured'], items: [['Invoices and ledger postings', 0], ['Stock balances', 0], ['Clickstream logs', 1], ['Sensor readings from equipment', 1], ['Call-centre recordings', 2], ['Scanned contracts', 2], ['CCTV footage', 2], ['App telemetry', 1]] } },
+    { id: 'storage', short: 'Six eras of storage', title: 'How storage evolved: six phases, four places', say: ['Nothing was ever switched off. Each phase answered a limit of the last and created its own. Think of a **pendulum**: structure first (trust, but slow), then structure deferred (speed, but trust paid), then both at once.'],
+      viz: [{ type: 'tour', numbered: true, title: 'The six phases', items: [
+        { label: 'Navigational', body: 'To ~1970. IBM IMS (1968, Apollo). Pre-wired chains of records. Limit: questions fixed when built.' },
+        { label: 'Relational', body: 'Codd, June 1970. Tables and SQL; Oracle 1979; **ACID** (a transfer completes fully or not at all). Produced OLTP; still runs the business.' },
+        { label: 'Data warehouse', body: '1990s. Inmon (1992) vs Kimball (1996). Second estate for analysis. **Schema-on-write**. Limit: a quarter to change.' },
+        { label: 'NoSQL / Hadoop', body: '2003–12. Google GFS and MapReduce papers; Hadoop 2006. Scale and shapeless data by relaxing correctness. Did not replace relational.' },
+        { label: 'Data lake', body: '2010–15. James Dixon, 14 Oct 2010. Cheap cloud storage, **schema-on-read**. Without catalogue and owner it becomes a **data swamp**.' },
+        { label: 'Cloud + lakehouse', body: '2012–now. Redshift, Snowflake split storage from compute; Delta, Iceberg, Hudi formats. One governed copy over lake storage.' }] },
+        { type: 'table', title: 'The four places data lives today', cols: ['Where', 'Good at', 'Bad at'], rows: [['Operational database', 'Speed and correctness per transaction', 'Questions across time or systems'], ['Data warehouse', 'Trusted answers to known questions', 'New questions; non-tabular data'], ['Data lake', 'Keeping everything, cheaply', 'Guaranteeing anything'], ['Lakehouse', 'Most of both with one copy', 'Young; needs discipline']] }],
+      pts: ['Ask of any lakehouse proposal: which earlier phase does it let us switch off? If none, who funds all six?'] },
+    { id: 'customer', short: 'What is a customer?', title: 'What counts as a customer? Master data and facts, dimensions, grain', say: ['Same person shops in-store, online, returns elsewhere and phones the contact centre: four systems, four records. One customer or four? It looks like marketing but it is architecture. The fix is **master data management** and a **system of record**.', 'Three words let you chair a data meeting: **facts** (things measured: a sale), **dimensions** (ways to slice: store, month), **grain** (what one row means). Get the grain wrong and numbers double-count silently. Before approving a dashboard ask: **what is one row?**'], pts: ['Master data: customer, product, supplier, employee, location, chart of accounts.', 'Cost: hot/warm/cold tiers; storage and compute billed separately; many platforms charge per query, so “who may ask what, how often” is a budget decision.'] },
+    { id: 'cases', short: 'Tesco, Walmart, Asian Paints', title: 'Three firms that competed on data', say: ['In none of them was the advantage the technology. It was a decision about who sees what data.'],
+      viz: { type: 'flip', cards: [['Tesco Clubcard (1995)', 'dunnhumby analysed loyalty data. Chairman: “you know more about my customers after three months than I know after 30 years.” Ending: by 2015 dunnhumby sale bids ~£700m vs ~£2bn hoped; advantage decays when you stop acting on the data.'], ['Walmart Retail Link', 'Gave suppliers daily store-level sales data; suppliers took over replenishment (vendor-managed inventory), moving forecasting and inventory risk to them.'], ['Asian Paints', '160,000+ retail touchpoints, 4–6 hour connectivity, forecasting at depot-SKU level; inventory norms ~5% lower.']] },
+      pts: ['Two numbers to refuse: “Target knew a teen was pregnant” (anecdote unverified) and “35% of Amazon revenue from recommendations” (unsourced).', '**Data residency:** RBI (6 Apr 2018) requires payment data stored only in India; DPDP Act 2023 s.16 lets government restrict transfers to listed countries; DPDP Rules 2025. Decide at design time.'] }
+  ],
+  quiz: [
+    { q: 'OLAP means…', o: ['Running the business', 'Asking questions about the business', 'Online application', 'Open lake and platform'], a: 1, w: 'OLAP = analytical work.' },
+    { q: 'Three of Davenport’s four criteria are…', o: ['Technical', 'Organisational', 'Financial', 'Legal'], a: 1, w: 'Binding constraint is organisational.' },
+    { q: 'A data lake without a catalogue or owner becomes…', o: ['A warehouse', 'A data swamp', 'A lakehouse', 'A mart'], a: 1, w: 'A swamp.' },
+    { q: 'Which is schema-on-write?', o: ['Data lake', 'Data warehouse', 'NoSQL', 'Lakehouse'], a: 1, w: 'Warehouse: structure agreed before data enters.' },
+    { q: '“Grain” means…', o: ['Data size', 'What one row represents', 'A data type', 'A security level'], a: 1, w: 'Wrong grain → double-counting.' },
+    { q: 'Which is unstructured?', o: ['Invoice table', 'Call recording', 'Stock balance', 'Ledger'], a: 1, w: 'Recordings have no tabular structure.' },
+    { q: 'RBI’s 2018 circular requires payment data to be…', o: ['Encrypted only', 'Stored only in India', 'Deleted yearly', 'Shared with banks'], a: 1, w: 'Hard localisation.' }
+  ],
+  cards: [
+    ['OLTP / OLAP', 'Run the business (many small correct writes) / ask about the business (big reads).'],
+    ['Structured / semi / unstructured', 'Rows and columns / labelled but no fixed table / no structure.'],
+    ['Warehouse / lake / lakehouse', 'Modelled governed copy / cheap raw storage / warehouse governance on lake storage.'],
+    ['Schema-on-write vs read', 'Structure before storing (warehouse) vs when querying (lake).'],
+    ['Data swamp', 'A lake with no catalogue, owner or quality rules.'],
+    ['Master data', 'Core shared entities: customer, product, supplier, employee, location.'],
+    ['Fact / dimension / grain', 'Measurement / way to slice / what one row is.'],
+    ['Data residency', 'Data must be stored within a named jurisdiction (RBI 2018; DPDP).']
+  ]
+});
+PHASES.push({
+  id: 'p6', n: 6, part: 'Part B · Data and AI (Session 7)', title: 'Moving Data', nav: 'Moving Data',
+  hook: 'Pipelines, quality and who owns the definition.', meta: 'Session 7 · 6 lessons',
+  blurb: 'Data is only useful once it is gathered, moved and refined. This chapter is the plumbing.',
+  story: 'We know where data lives. Now: how does it get from where it is created to where it is used, and how do we know it is right?',
+  bridge: 'With plumbing understood, Chapter 7 shows why AI is really a data problem, using Sephora.',
+  lessons: [
+    { id: 'desks', short: 'Four desks', title: 'Data work: four desks and a strategy', say: ['Clive Humby: “data is the new oil”, but the rest of the line is usually dropped: it must be **refined**, and that is where the cost sits. Data work fails at the **handoffs**.'],
+      viz: { type: 'table', cols: ['Desk', 'Question', 'Horizon'], rows: [['Chief Data Officer', 'What must we answer; who decides what a word means?', '3–5 yrs'], ['Data architect', 'Where does data sit, how does it move, what may it do?', '2–3 yrs'], ['Data modeller', 'Entities, grain, key', '1–2 yrs'], ['Data engineer', 'How stored, loaded, recovered', 'Weeks']] },
+      pts: ['Data management lifecycle: create, store, move, use, protect, retire (name an owner for each).', 'Six strategy decisions: decision inventory; master entities and systems of record; central vs federated; quality bar and who funds it; where data may sit; what gets switched off.'] },
+    { id: 'plan', short: 'Plan a database', title: 'Five steps from business question to database', say: ['Each step is cheap to change early and costly later. Renaming an entity on a whiteboard costs a marker; renaming a column in production costs a weekend.'],
+      viz: { type: 'tour', numbered: true, items: [{ label: 'Questions', body: 'Write the decisions the app must support, as business questions.' }, { label: 'Conceptual', body: 'Name entities, then fix the **grain** of each.' }, { label: 'Logical', body: 'Keys and relationships; **normalisation** = store each fact once.' }, { label: 'Physical', body: 'Indexes, partitioning, retention, and keeping history when attributes change.' }, { label: 'Master data', body: 'Name master entities, the authoritative system and the named owner before go-live.' }] },
+      pts: ['Example (constructed): Southern Staples, a Tamil Nadu distributor. Asked for forecasting; diagnosis was master data (one product under four SKU codes).', 'Field-type traps: money is never floating point; identifiers that look numeric are text; a date is not a timestamp; fixed-value fields belong in lists.'] },
+    { id: 'pipe', short: 'Pipelines', title: 'What a data pipeline is', say: ['A **data pipeline** is a scheduled, owned, repeatable process moving data from sources to destinations with defined transformations, stated freshness and completeness, and a decided behaviour on failure. Missing a clause means it is just a script.'],
+      viz: { type: 'table', cols: ['Choice', 'Option A', 'Option B'], rows: [['Where to transform', '**ETL**: transform before loading (warehouse era)', '**ELT**: load raw, transform later (cheap storage)'], ['How often', '**Batch**: on a schedule (most reporting)', '**Streaming**: each event as it happens (fraud, payments)']] },
+      pts: ['Test for speed: name the decision that changes if data is one hour old, and who makes it.', 'Operate it: named owner, freshness promise, failure behaviour, **data contracts**, lineage, observability, catalogue.'] },
+    { id: 'quality', short: 'Data quality', title: 'Data quality is six questions', say: ['“Our data is bad” is unwinnable. Break it into six measurable questions (DAMA UK 2013).'],
+      viz: { type: 'match', pairs: [['Completeness', 'Is the data that should be there, there?'], ['Accuracy', 'Does it describe the real world correctly?'], ['Consistency', 'Does it agree across systems?'], ['Timeliness', 'Is it available when the decision is made?'], ['Validity', 'Does it follow the rules?'], ['Uniqueness', 'Is each real thing recorded once?']] } },
+    { id: 'own', short: 'Who owns the definition', title: 'Who may change “active customer”?', say: ['Marketing says 3.1 lakh active customers, Finance says 2.4 lakh. Nobody lies: two definitions exist and nobody has authority to choose. If three people can change it, nobody can.'],
+      viz: { type: 'flip', cards: [['Central authority', 'One group owns definitions and platform. Consistent but slow. Right for chart of accounts, legal entity, product hierarchy.'], ['Federated stewardship', 'Named stewards in business domains under a thin central standard. Where most large Indian enterprises land.'], ['Domain ownership (data mesh)', 'Each domain publishes data as a product (Dehghani, 2019). Needs engineering maturity.']] } },
+    { id: 'plumb', short: 'Plumbing as advantage', title: 'When the plumbing was the advantage', say: ['P&G built decision cockpits for 58,000 staff to stop meetings debating whose number was right. UPI standardised how a payment instruction moves (24.51bn transactions, Aug 2026). Amazon’s c.2002 interface mandate is the ancestor of the **data contract**.'], pts: ['Two numbers not to take into a budget meeting: “bad data costs the US $3.1 trillion” and “poor data quality costs $12.9m a year”. Cost it from your own operations instead.', 'Case Kaps Foods (discussed in class) is not in the repo.'] }
+  ],
+  quiz: [
+    { q: 'A data pipeline must have…', o: ['Only a schedule', 'Scheduled, owned, repeatable, defined transformations, stated guarantees, decided failure behaviour', 'A dashboard', 'A data lake'], a: 1, w: 'Six clauses.' },
+    { q: 'ELT means…', o: ['Extract, Transform, Load', 'Extract, Load, Transform', 'Edit, Load, Test', 'Export, Link, Transfer'], a: 1, w: 'Load raw first, transform in the platform.' },
+    { q: 'When should you use streaming?', o: ['Always', 'When a decision changes within the latency window', 'For monthly reports', 'Never'], a: 1, w: 'Fraud, payments.' },
+    { q: 'One product recorded under four codes is a failure of…', o: ['Timeliness', 'Uniqueness', 'Validity', 'Accuracy'], a: 1, w: 'Uniqueness.' },
+    { q: 'A data contract’s most important clause covers…', o: ['Price', 'Notice before changes', 'Colour', 'Storage'], a: 1, w: 'Notice before any change.' },
+    { q: 'Federated stewardship means…', o: ['One central group decides all', 'Named stewards in domains under a thin central standard', 'No governance', 'Vendors decide'], a: 1, w: 'Where most Indian enterprises land.' }
+  ],
+  cards: [
+    ['Data pipeline', 'Scheduled, owned, repeatable process moving data with defined transformations, stated guarantees and decided failure behaviour.'],
+    ['ETL vs ELT', 'Transform before loading vs load raw then transform.'],
+    ['Batch vs streaming', 'Moved on a schedule vs each event as it occurs.'],
+    ['Data contract', 'Agreement between producer and consumer on shape, meaning, freshness, owner and notice before change.'],
+    ['Six quality dimensions', 'Completeness, accuracy, consistency, timeliness, validity, uniqueness.'],
+    ['Normalisation', 'Store each fact in exactly one place.'],
+    ['Data mesh', 'Domains publish data as products; high engineering maturity needed.']
+  ]
+});
+
+PHASES.push({
+  id: 'p7', n: 7, part: 'Part B · Data and AI (Session 8)', title: 'AI Is a Data Problem: Sephora', nav: 'Sephora & AI',
+  hook: 'Before the model, the data.', meta: 'Session 8 · Sephora case · 5 lessons',
+  blurb: 'Sephora wants more AI. The case never mentions data. That silence is the lesson.',
+  story: 'We know where data lives and how it moves. Now apply it: what must be true about data before an AI idea can work?',
+  bridge: 'Last chapter: when the rails become shared infrastructure. Platforms and India Stack.',
+  lessons: [
+    { id: 'case', short: 'The Sephora case', title: 'The case in brief', say: ['Sephora (LVMH-owned, 2,600 stores in 35 countries) leads in AI, AR try-ons and loyalty (Beauty Insider). In June 2024 US CMO **Zena Srivatsa Arnold** must choose between **investing in generative AI** (new, untested, ethical and privacy risks) and **deepening existing AI/AR**, and between **digital-first** ($50–100m a year) and **physical stores** ($100–300m a year; ~1,000 Kohl’s mini-stores gave $1.4bn sales in 2023).'], pts: ['Tools: Virtual Artist (AR), Color IQ (foundation shade), Skin Care IQ, chatbots.'] },
+    { id: 'pass', short: 'What passes through', title: 'Four properties pass straight into the model', say: ['A model knows the world only through its data, so **quality, coverage, latency and governance** pass through.'],
+      viz: { type: 'flip', cards: [['Quality', 'Four product codes → model learns four products.'], ['Coverage', 'Shade model trained on narrow skin tones fails outside them.'], ['Latency', 'Recommending out-of-stock items from last week’s inventory.'], ['Governance', 'Data collected for one purpose reused for another is a legal exposure; permission is fixed at collection.']] } },
+    { id: 'six', short: 'Six questions', title: 'Six questions before funding any AI', say: ['None is about the model. They are about the business around it.'],
+      viz: { type: 'tour', numbered: true, items: [{ label: 'Decide', body: 'What exactly will it decide, and who acts on it?' }, { label: 'Truth', body: 'Where will the right answers (ground truth) come from? Often returns data.' }, { label: 'Row', body: 'What is one row (grain)?' }, { label: 'Fresh', body: 'How fresh must the answer be? Freshness is bought.' }, { label: 'Allowed', body: 'Are we allowed to use the data this way?' }, { label: 'Worked', body: 'How will we know it worked? Needs a comparison group.' }] } },
+    { id: 'ident', short: 'Identity resolution', title: 'Identity resolution: the capability under every other', say: ['Every personalisation claim assumes one view of the customer. **Identity resolution** decides records describe the same person. **Deterministic** matching joins on a reliable key (loyalty number, verified email): precise, limited. **Probabilistic** matching uses weaker signals: wider coverage, false matches. Hold it in an **identity graph**; a **golden record** is the agreed version; a CDP is a tool, not an answer.'],
+      viz: { type: 'match', title: 'Capability → hardest data problem', pairs: [['Virtual try-on / AR', 'Product attribute master across brands'], ['Shade matching', 'Coverage of skin tones and honest labels (returns)'], ['Personalised recommendation', 'Identity resolution across channels'], ['GenAI consultation', 'Content governance'], ['Dynamic pricing', 'Brand-partner contracts and legal limits'], ['Loyalty rewards', 'Definitions: tier, active, who may change']] },
+      pts: ['**Match rate** = of multi-channel customers, share correctly recognised as one person. Ask it split by channel.', 'Partner channels: a **data clean room** gives joint insight without exchanging personal data.'] },
+    { id: 'estate', short: 'The AI-ready estate', title: 'The estate: four old layers, three new', say: ['AI makes the four places (operational DB, warehouse, lake, lakehouse) more important and adds three layers.'],
+      viz: { type: 'table', cols: ['Layer', 'Holds'], rows: [['Semantic layer', 'Agreed definitions (tier, active member, return)'], ['Feature store', 'Versioned model inputs served identically in training and production (avoids training–serving skew)'], ['Vector store / RAG', 'Embeddings of approved content so generative answers come from current, approved material'], ['Model registry', 'Which model version, trained on what, drifting?']] },
+      pts: ['Do not start with the platform. Start from the five decisions; add AI layers when needed; keep one copy.', 'Horizon plan: (1) measure match rate and attribute completeness, (2) fund the binding constraint, (3) let the estate follow the decisions, (4) buy a small option and hold a stage gate.', 'Two numbers to refuse: “85% of AI projects fail” (Gartner predicted erroneous outcomes, not failure) and “data scientists spend 80% cleaning data”.'] }
+  ],
+  quiz: [
+    { q: 'Which is NOT a property that passes from data into a model?', o: ['Quality', 'Coverage', 'Latency', 'Brand colour'], a: 3, w: 'Quality, coverage, latency, governance.' },
+    { q: 'Deterministic matching joins records on…', o: ['Guesses', 'A reliable shared key', 'Photos', 'Postcodes only'], a: 1, w: 'e.g. loyalty number.' },
+    { q: 'Match rate is…', o: ['Share of sales', 'Share of multi-channel customers correctly recognised as one', 'Price match', 'App rating'], a: 1, w: 'The measurable behind personalisation.' },
+    { q: 'RAG makes a generative model answer from…', o: ['Memory', 'Approved retrieved content', 'The internet', 'Random text'], a: 1, w: 'Retrieval-augmented generation.' },
+    { q: 'Where does ground truth for shade matching come from?', o: ['Surveys', 'Returns and repeat purchases', 'Ads', 'Social media'], a: 1, w: 'An operating process by-product.' },
+    { q: 'A data clean room…', o: ['Deletes data', 'Gives joint insight without exchanging personal data', 'Is a server room', 'Stores photos'], a: 1, w: 'For partner channels.' }
+  ],
+  cards: [
+    ['Identity resolution', 'Deciding that records in different systems describe the same person.'],
+    ['Golden record', 'Single agreed version of an entity, via survivorship rules.'],
+    ['Feature store', 'Versioned model inputs served identically in training and production.'],
+    ['RAG', 'Retrieval-augmented generation: answer from approved content.'],
+    ['Model drift', 'Quiet decay as the world moves from training data.'],
+    ['Ground truth', 'Examples of the correct answer a model learns from.'],
+    ['Data clean room', 'Joint insight without exchanging personal data.']
+  ]
+});
+PHASES.push({
+  id: 'p8', n: 8, part: 'Part C · Platforms (Session 9)', title: 'Platforms and India Stack', nav: 'Platforms',
+  hook: 'When the rails become public infrastructure.', meta: 'Session 9 · India Stack case · 5 lessons',
+  blurb: 'From one firm to many: how value is created between firms, and how India built public rails others build on.',
+  story: 'Everything so far was inside one firm. Now the question is how value is created between firms.',
+  bridge: 'Head to the Toolkit to drill the exam questions, flashcards and cheat sheet.',
+  lessons: [
+    { id: 'plat', short: 'Pipeline vs platform', title: 'A platform is a kind of economics', say: ['A **pipeline** business controls a sequence of steps (buy, add, sell). A **platform** enables interactions between groups it does not own and takes a share, supplying governance, standards and protocols rather than the product. Platform marginal cost is close to nothing for one more interaction.'],
+      viz: { type: 'table', cols: ['', 'Pipeline', 'Platform'], rows: [['Core asset', 'What it owns', 'Who it connects and the rules'], ['Growth', 'More of the same at falling unit cost', 'More useful to one side as the other grows'], ['Marginal cost', 'Falls but never to nothing', 'Near nothing per interaction'], ['Quality', 'Managed directly', 'Governed via rules'], ['Hard question', 'What to make, at what price?', 'Which side to subsidise, for how long?']] },
+      pts: ['Rochet and Tirole (2003): in two-sided markets the profit-maximising price is often below cost on one side.'] },
+    { id: 'models', short: 'Ten models, three platforms', title: 'Ten digital business models; only three are platforms', say: ['Classify before claiming network effects. Platform, hypermarket and (partly) ecosystem intermediate; the rest are ordinary businesses with digital delivery.'],
+      viz: { type: 'sort', buckets: ['Genuine intermediary (platform-like)', 'Ordinary business, digital delivery'], items: [['Platform (Uber)', 0], ['Hypermarket (Amazon)', 0], ['Ecosystem (Apple)', 0], ['Subscription (streaming)', 1], ['Free ad-funded (Google Search)', 1], ['Freemium (Spotify)', 1], ['Rent not buy (car sharing)', 1], ['Experience (Tesla, Red Bull)', 1]] },
+      pts: ['Network effects: cross-side (engine, cold start), same-side (usually negative), negative (spam, fraud). Three abuses: scale is not a network; ignoring multihoming; assuming effects are global when local.'] },
+    { id: 'built', short: 'What a platform is made of', title: 'The interface is the product', say: ['Stripe made card acceptance an API call; Klarna made underwriting a 300-millisecond decision; Razorpay did Stripe’s job on rails it did not have to build.'],
+      viz: { type: 'match', pairs: [['Public API', 'Versioned endpoints over HTTPS; the interface is the product'], ['SDK', 'Prebuilt code dropped into someone else’s page'], ['Webhook', 'Platform calls you back when an event happens'], ['Idempotency key', 'Makes a retried request safe (no double charge)'], ['Ledger', 'Transactional, double-entry store of record'], ['Sandbox and docs', 'Fake environment plus manual: the distribution channel']] },
+      pts: ['Why now in India: three costs collapsed: connectivity (Jio; ₹225/GB 2016 → ~₹18.5 2019), verifying a stranger (Aadhaar eKYC), moving small money (UPI).'] },
+    { id: 'stack', short: 'India Stack', title: 'India Stack: three layers, 45 blocks, open protocols', say: ['India Stack answers three questions: **Who am I? What do I have? What do I do?** It has **45 modular blocks** (APIs, standards, protocols, like Lego). Principle: **protocol over platform** (like SMTP: no one owns the inbox) and **“Open, Open, Open”**. Each layer could only be built once the one beneath existed.'],
+      viz: { type: 'match', title: 'Block → what it does', pairs: [['Aadhaar auth / eKYC', 'Identity: yes/no or signed record on consent; verification becomes an API call'], ['eSign', 'Legally valid signature as a service'], ['UPI', 'Instant interoperable payments via virtual address'], ['DigiLocker', 'Issuer-pushed verifiable documents'], ['Account Aggregator / DEPA', 'Consent manager passing encrypted data it cannot read'], ['OCEN', 'Lending as easy as a UPI payment (14% of MSMEs had formal credit)'], ['ONDC', 'Open network commerce; buyer, seller, logistics unbundled'], ['CoWIN', 'Vaccination built by composing existing blocks']] },
+      pts: ['Aadhaar: 1.5m enrolments a day at under $1; 600m IDs by 2014; authentication returns only yes/no. eKYC use: 30m (2015) → 9bn (2021). UPI launched April 2016 by NPCI. DigiLocker: 160m users.', 'DEPA “privacy double-blind”: no party has all the information.'] },
+    { id: 'settle', short: 'What it settles', title: 'What the experiment settles, and what it does not', say: ['**Settled:** public infrastructure solved the cold start by mandate; it moved competition up a layer; it made small customers economic. **Not settled:** open rails still gave a duopoly (about 80% of UPI on PhonePe and Google Pay; 79% in May 2026; the 30% cap keeps being deferred); somebody must pay for the rails (zero merchant fee); exportability is unresolved.'],
+      pts: ['Four design choices to steal: protocol over platform; unbundle the transaction; make consent a technical artefact; compose, do not build.', 'Lesson: infrastructure decides which layer of an industry is contestable.'] }
+  ],
+  quiz: [
+    { q: 'Platform marginal cost for one more interaction is…', o: ['High', 'Close to nothing', 'Fixed at 22%', 'Negative'], a: 1, w: 'Which is why winners run away.' },
+    { q: 'How many of the ten digital business models are genuine intermediaries?', o: ['All', 'Three', 'One', 'Seven'], a: 1, w: 'Platform, hypermarket, ecosystem (partly).' },
+    { q: 'India Stack’s three questions are…', o: ['Who am I, what do I have, what do I do', 'Where, when, why', 'Buy, sell, hold', 'Pay, save, lend'], a: 0, w: 'Identity, assets/data, transactions.' },
+    { q: '“Protocol over platform” means…', o: ['Own the inbox', 'Speak a published standard so no firm owns the network', 'Charge fees', 'Use one app'], a: 1, w: 'SMTP analogy.' },
+    { q: 'Roughly what share of UPI volume sits with two apps?', o: ['20%', '50%', '80%', '5%'], a: 2, w: 'About 80%.' },
+    { q: 'An idempotency key prevents…', o: ['Hacking', 'A retried request becoming a double charge', 'Slow pages', 'Data loss'], a: 1, w: 'Safe to repeat.' }
+  ],
+  cards: [
+    ['Pipeline vs platform', 'Controls a sequence of steps vs enables interactions among others and takes a share.'],
+    ['Cold-start problem', 'Neither side joins an empty platform; solved by subsidy, or in India Stack by mandate.'],
+    ['Multihoming', 'Belonging to several platforms at once, weakening lock-in.'],
+    ['Protocol over platform', 'Published standard (like SMTP): no firm owns the network.'],
+    ['DEPA', 'Data Empowerment and Protection Architecture; consent manager with privacy double-blind.'],
+    ['India Stack layers', 'Identity (Aadhaar, eKYC, eSign), Data (DigiLocker, Account Aggregator), Payments (UPI), Commerce (ONDC).'],
+    ['Digital public infrastructure', 'Identity, payment and data rails provided as public goods on open terms.']
+  ]
+});
+
+PHASES.push({ id: 'p9', n: 9, part: 'Exam toolkit', title: 'Exam Toolkit', nav: 'Toolkit', hook: 'Model answers to every Question Bank question, flashcards, a mock quiz and a one-page cheat sheet.', meta: '31 short + 8 long answers', blurb: 'Practise the way the exam works: read the question, answer from memory, then check.' });
+const SQ = (n, s, lesson, q, a, ph) => TOOLKIT.short.push({ n, s, lesson, q, a, ph });
+SQ(1, 'ok', 'p1/idea', 'Outline the five historical phases of IT in sequence, with period and central technology.', '<ul><li><b>1 Automate</b>, 1930s–60s: electronic computer</li><li><b>2 Inform</b>, 1970s–80s: microprocessor, PC, LAN</li><li><b>3 Integrate</b>, 1990s–2000s: enterprise systems (ERP) and the web</li><li><b>4 Intelligence</b>, 2010s–2025: cloud, mobile, machine learning</li><li><b>5 Autonomy</b>, 2025 onward: agentic AI</li></ul>', 1);
+SQ(2, 'ok', 'p1/ph1', 'Main use of IT in Phase 1? Two examples.', 'Substituting for clerical labour in the back office. Examples: **payroll** and **billing** (also ledgers).', 1);
+SQ(3, 'ok', 'p1/ph2', 'What is shadow IT? Which phase?', 'Technology used without formal IT approval (e.g. unapproved spreadsheets). First appeared in **Phase 2 (Inform)**. A governance problem, not a technology one.', 1);
+SQ(4, 'ok', 'p1/ph4', 'How did cloud change spending from capex to opex?', 'Instead of buying machines upfront (capital), firms rent computing from the cloud (AWS, 2006) and pay as they use it (operating cost that scales with usage).', 1);
+SQ(5, 'ok', 'p1/ph5', 'What is agentic AI? Which phase?', 'AI systems that **plan and execute** tasks rather than only answer. **Phase 5 (Autonomy)**: automates judgement, not just execution.', 1);
+SQ(6, 'ok', 'p2/two', 'Explain the Application Technology Stack (ATS).', 'What a company **builds software with**. Optimised for **speed of change**; mostly built and assembled; 3–5 year life before rewrite; continuous releases; failure = outages and slow, frightening releases.', 2);
+SQ(7, 'ok', 'p2/two', 'Explain the Enterprise Technology Stack (ETS).', 'What a company **runs on**. Optimised for **integrity, continuity and proof**; mostly bought and configured (ERP etc.); 10–20 years; scheduled, regression-tested releases; failure = wrong numbers, failed audit, endless migration.', 2);
+SQ(8, 'gap', 'p2/vocab', 'What is a monolithic architecture? One advantage and one disadvantage.', '*(Not in your files.)* One single unit with all parts bundled and released together. **Advantage:** simple to build and deploy at first. **Disadvantage:** any change means redeploying everything; hard to scale or fix one part alone.', 2);
+SQ(9, 'part', 'p2/layers', 'Front end vs back end? One example each.', '*(Terms not used in your files; interface layer vs layers below.)* **Front end:** what users see (checkout screen). **Back end:** servers, logic and databases behind it (the system storing the order and computing delivery).', 2);
+SQ(10, 'ok', 'p2/six', 'What is a system of record? Example.', 'The one system authoritative for an entity; right by definition when systems disagree. Example: **Workday** for employees, **SAP S/4HANA** for transactions.', 2);
+SQ(11, 'part', 'p2/integ', 'What is an API? Example of its use.', 'A published interface another program calls (usually versioned URLs over HTTPS). Example: DBS’s API platform let partners such as McDonald’s and Foodpanda plug in (150 APIs); a payment API lets a shop take a card payment.', 2);
+SQ(12, 'part', 'p4/pillars', 'What is digital transformation? Example.', '*(Definition from general knowledge; DBS case supplies the example.)* Using digital technology to fundamentally change how an organisation operates and serves customers, with culture change. Example: **DBS**: digital to the core, customer journey, start-up culture.', 4);
+SQ(13, 'gap', 'p4/pillars', 'Distinguish digitisation and digitalisation, with an example each.', '*(Not in your files.)* **Digitisation:** converting analogue to digital (scanning a paper form into a file). **Digitalisation:** using digital tools to change a process (depositing a cheque by photo on a mobile app, approved and settled online).', 4);
+SQ(14, 'ok', 'p1/ph4', 'What is a learning loop? Example.', 'Product generates data → data improves the model → model improves the product. Example: a streaming service’s recommendations improve as you watch (Netflix personalisation influences ~80% of hours streamed).', 1);
+SQ(15, 'ok', 'p4/why', 'Two companies that transformed successfully, and what each did.', '**DBS:** became a leading digital bank (cloud, ADA data platform, AI, start-up culture). **Loblaw:** grocer expanded into Canada’s largest healthcare software platform (also Ping An, Progressive in DBS Exhibit 6).', 4);
+SQ(16, 'part', 'p2/money', 'Three reasons digital transformation programmes fail.', 'From your documents: (1) **organisational misalignment**: the firm cannot agree one way of working; (2) **customising or configuring around the old org chart** (“expensive filing cabinet”) with no one holding decision rights; (3) **ignoring the constraint of the era / incumbency**; also DBS’s early failures: big pilots (Watson) instead of agile MVPs.', 2);
+SQ(17, 'ok', 'p1/idea', 'One defining technology per phase.', '1 electronic computer (UNIVAC/IBM 360); 2 microprocessor/PC; 3 ERP/enterprise systems and the web; 4 cloud (AWS); 5 agentic AI.', 1);
+SQ(18, 'ok', 'p1/ph3', 'Two major developments of Phase 3, with examples.', '(1) **Enterprise systems (ERP)**, e.g. SAP/Oracle. (2) **The web**, e.g. the browser and first website from CERN; 361m online by 2000.', 1);
+SQ(19, 'part', 'p1/ph3', 'What was Y2K? Role in India’s IT industry?', '*(Bug explanation is general knowledge.)* Old software used two-digit years, risking 2000 being read as 1900; fixing it was huge work. **Y2K remediation became India’s entry wedge into global enterprise IT**, starting the global delivery model.', 1);
+SQ(20, 'part', 'p1/cost', 'What does Moore’s Law describe? Effect on cost?', '*(Definition general knowledge.)* Transistors per chip roughly double about every two years. Computing cost collapsed: computation per gigaflop fell >99.99% (2000–2017); storage from ~$10,000 per MB (1956).', 1);
+SQ(21, 'ok', 'p1/who', 'How did the CIO role change from Phase 3 to Phase 4?', 'Phase 3: CIO entered the C-suite as ERP programmes became bet-the-company projects. Phase 4: with every business unit buying software, the CIO became **broker and risk owner** rather than builder.', 1);
+SQ(22, 'part', 'p2/two', 'Two ATS and two ETS technologies.', '**ATS:** microservices, APIs, DevOps / continuous integration. **ETS:** ERP such as SAP S/4HANA and Oracle Fusion; identity systems (single sign-on, MFA).', 2);
+SQ(23, 'gap', 'p2/vocab', 'What is microservices architecture? Advantage and disadvantage.', '*(Not in your files.)* Application split into many small independent services that talk through APIs. **Advantage:** change or scale each service independently. **Disadvantage:** more complex to run and coordinate.', 2);
+SQ(24, 'gap', 'p2/vocab', 'What is CI/CD? One reason it is useful.', '*(Not defined in your files.)* Continuous Integration: code merged often and automatically built/tested. Continuous Delivery/Deployment: tested code released automatically. **Useful:** faster, safer releases (DBS’s pipeline automation gave tenfold release cadence).', 2);
+SQ(25, 'ok', 'p2/integ', 'What is an integration layer? One reason needed.', 'The layer letting applications exchange information in a documented, governed way. Needed because one-to-one links multiply as n(n−1)/2 (10 systems → 45 links).', 2);
+SQ(26, 'gap', 'p2/vocab', 'What is cloud-native architecture? One benefit.', '*(Not defined in your files.)* Applications designed from the start for the cloud (microservices, automatic scaling and recovery). **Benefit:** scale up or down on demand and keep running when a part fails.', 2);
+SQ(27, 'part', 'p4/pillars', 'How is digital transformation different from buying new technology?', 'Buying adds a tool; transformation changes the organisation. DBS ran a whole-organisation programme, whereas other banks added incremental, standalone AI features that did not touch core processes. Megatherm: ERP “a strategic commitment, not a transactional purchase”.', 4);
+SQ(28, 'part', 'p4/pillars', 'What is business-model transformation? Example.', '*(Definition general.)* Changing how a company creates and earns money. Example: DBS entering e-marketplaces and a carbon exchange; Amazon moving from retailer to marketplace to infrastructure.', 4);
+SQ(29, 'part', 'p4/pillars', 'Why does serving one more customer cost almost nothing in a digital business? Example.', 'Software delivers the service, so the extra cost per user is close to zero (platforms: marginal cost “close to nothing for one more interaction”). Example: Aadhaar eKYC onboarding at near-zero marginal cost.', 4);
+SQ(30, 'part', 'p1/who', 'Two companies whose transformation failed, and a reason each.', '**DEC:** dismissed the PC and was destroyed by the PC its own cost curve created. **Xerox PARC:** invented GUI/Ethernet but commercialised almost nothing. (Nokia, Kodak, Blockbuster, BlackBerry are named casualties; general reason: incumbent assets made the new model look unattractive.)', 1);
+SQ(31, 'part', 'p4/people', 'Three reasons changing employee behaviour matters in digital transformation.', '(1) New tools only create value if people use them. (2) A data-driven, start-up culture enables fast change (DBS: 1,000 experiments a year, councils). (3) Reskilling closes capability gaps and keeps staff (DigiFY 80%+; call-centre staff retrained as chat agents).', 4);
+
+const LQ = (n, ph, title, scn, tasks) => TOOLKIT.long.push({ n, ph, title, scn, tasks });
+LQ(1, 3, 'Megatherm: cloud vs on-premises ERP', 'The CFO wants to keep the on-premises system; the CIO wants cloud ERP.', [
+  { k: 'A', s: 'ok', lesson: 'p3/erp', q: 'What is an ERP? Describe four business functions it would integrate.', a: '<b>ERP:</b> integrated software on one shared data model, one source of truth across departments.<ul><li>Finance and controlling (ledger, close, reporting)</li><li>Procurement / materials management (P2P)</li><li>Production planning and manufacturing (bill of materials, shop floor)</li><li>Sales and distribution (O2C), plus CRM and after-sales service</li></ul>A sale recorded once updates stock, receivables, production plan and ledger.' },
+  { k: 'B', s: 'part', lesson: 'p3/cloud', q: 'Differences between on-premises and cloud ERP: cost, maintenance, scalability.', a: '<ul><li><b>Cost:</b> on-prem = large upfront licence and servers + ~22% yearly maintenance; cloud = lower upfront, subscription/hosting (case: cost-effective).</li><li><b>Maintenance:</b> on-prem = your IT patches and upgrades; cloud = largely provider *(inferred)*.</li><li><b>Scalability:</b> on-prem limited by own hardware, gives control; cloud scales on demand, faster deployment.</li></ul>' }]);
+LQ(2, 3, 'Megatherm: mapping processes', 'Megatherm must map its main business processes into the new system.', [
+  { k: 'A', s: 'ok', lesson: 'p3/cycles', q: 'Describe Procure-to-Pay and its steps.', a: 'Cycle for buying and paying: <b>requisition → purchase order → goods receipt → invoice → three-way match → payment.</b> Three-way match controls fraud and duplicate payment.' },
+  { k: 'B', s: 'ok', lesson: 'p3/cycles', q: 'Describe Order-to-Cash and its steps.', a: 'Cycle for selling and collecting: <b>enquiry → quote → order → availability check → despatch → invoice → collection → cash application.</b> Where revenue recognition and e-invoicing sit.' }]);
+LQ(3, 4, 'DBS: from “Damn Bloody Slow” to digital leader', 'About fourteen years of transformation.', [
+  { k: 'A', s: 'ok', lesson: 'p4/scale', q: 'Main changes DBS made.', a: '<ul><li>Whole-organisation approach, three pillars</li><li>Overhauled technology and operations; new core banking in 12 markets in 28 months</li><li>Insourced talent (85% outsourcing → 85% insourcing); reskilling (DigiFY)</li><li>Data First and ADA; everything to cloud (99% off physical servers)</li><li>Experimentation (1,000 a year), agile, GANDALF; two-in-a-box</li><li>New businesses (marketplaces, carbon exchange, API platform)</li></ul>' },
+  { k: 'B', s: 'ok', lesson: 'p4/wins', q: 'Three areas where DBS used AI or analytics successfully.', a: '<ul><li>ATM predictive maintenance and cash replenishment (out-of-cash down 90%+)</li><li>IVR call interception (30 seconds saved; satisfaction 3.5→4.1)</li><li>Anti-money-laundering scoring (analysts handle a third more cases); also personalised nudges (30m a month), attrition prediction</li></ul>' }]);
+LQ(4, 4, 'DBS: data platform and shared leadership', 'DBS built a common data platform and a business-technology leadership structure.', [
+  { k: 'A', s: 'ok', lesson: 'p4/data', q: 'What is a data platform? Why before scaling AI?', a: 'A shared environment for ingestion, storage, security, governance, visualisation and AI-model management (DBS’s <b>ADA</b>). AI needs accessible, clean, governed data; a common platform lets many teams build and reuse models self-service instead of rebuilding data each time.' },
+  { k: 'B', s: 'ok', lesson: 'p4/box', q: 'What is two-in-a-box? Why introduced?', a: 'A business lead and a technology lead paired with <b>joint KPIs</b>. Introduced to support Data First culture and give a joined-up, differentiated customer experience, so business and tech share ownership.' }]);
+LQ(5, 2, 'Megatherm: moving ERP to the cloud', 'Megatherm considers moving its ERP from its own servers to the cloud.', [
+  { k: 'A', s: 'gap', lesson: 'p2/cloud', q: 'Describe IaaS, PaaS and SaaS with an example each.', a: '*(General knowledge; your files only name them.)* <b>IaaS:</b> rent servers/storage/network (AWS). <b>PaaS:</b> rent a platform to build and run apps (Google App Engine). <b>SaaS:</b> finished software by subscription (Salesforce, Workday, NetSuite).' },
+  { k: 'B', s: 'part', lesson: 'p3/cloud', q: 'Three benefits and two risks of cloud ERP.', a: '<b>Benefits:</b> scalability; lower upfront cost; faster deployment. <b>Risks:</b> vendor dependence/lock-in and unclear roadmap; data security, compliance and residency (DPDP); (also integration complexity with add-ons). *Risks inferred from the documents.*' }]);
+LQ(6, 3, 'Megatherm: customisation and GST', 'Department heads want the ERP to match current ways of working; it must support e-invoicing and GST.', [
+  { k: 'A', s: 'ok', lesson: 'p2/quad', q: 'Configuring vs customising. Why does customisation raise long-term cost?', a: '<b>Configuring:</b> use built-in settings: cheap, supported, survives upgrades. <b>Customising:</b> change the software to fit habits: paid once in cash and <b>forever in upgrade cost</b> (changes retested and redone each upgrade; may block upgrades).' },
+  { k: 'B', s: 'ok', lesson: 'p3/india', q: 'What is e-invoicing? How can ERP help with GST?', a: 'Invoices created in a government-prescribed electronic format and reported to the GST portal (above ₹5 crore since Aug 2023; above ₹10 crore must report within 30 days from April 2025 or lose input tax credit). An ERP generates and reports compliant invoices from the same order-to-cash record, with an audit trail.' }]);
+LQ(7, 4, 'DBS: all in on AI', 'DBS describes itself as a technology company all in on AI.', [
+  { k: 'A', s: 'ok', lesson: 'p4/wins', q: 'Two examples of AI in customer service or operations.', a: 'IVR interception (predicts reason for call, routes quickly; 30 seconds saved, satisfaction 3.5→4.1, calls −8%) and AML scoring (risk scores, hibernation, Cruise; a third more cases). Also personalised nudges.' },
+  { k: 'B', s: 'ok', lesson: 'p4/watson', q: 'The Watson wealth-advisory pilot and its lesson.', a: 'A large pilot with IBM Watson did not succeed. Lesson: use <b>agile</b> methods, start with a <b>minimum viable product</b> and refine over time.' }]);
+LQ(8, 4, 'DBS: off physical servers, digital-only bank', 'DBS moved most applications off physical servers and launched a digital-only bank in India.', [
+  { k: 'A', s: 'ok', lesson: 'p4/wins', q: 'Moving applications off physical servers: meaning and two benefits.', a: 'Running applications on virtual/cloud infrastructure (99% moved to a virtual private cloud by 2020) rather than owned servers. Benefits: scale computing as data grows; smaller data-centre footprint; faster deployment of AI.' },
+  { k: 'B', s: 'ok', lesson: 'p4/wins', q: 'What is a digital-only bank? What did DBS Digibank India achieve?', a: 'A bank with no branches that serves customers wholly through mobile/online channels. Digibank India (2016): first mobile-only bank in India and first to use Aadhaar/biometrics for all-digital onboarding; customers ~6×, transactions 12× with the same call-centre headcount.' }]);
+
+TOOLKIT.cheat = `
+<h3>1 · Five phases</h3><div class="tw"><table class="t"><thead><tr><th>Phase</th><th>Cheap</th><th>Scarce</th><th>Tech</th></tr></thead><tbody>
+<tr><td>1 Automate 1930s–60s</td><td>Arithmetic</td><td>Clean coded data</td><td>Computer; IBM</td></tr>
+<tr><td>2 Inform 1970s–80s</td><td>Computing power</td><td>Managerial control</td><td>Microprocessor, PC; shadow IT</td></tr>
+<tr><td>3 Integrate 1990s–2000s</td><td>Connectivity</td><td>Process design</td><td>ERP + web; CIO in C-suite; Y2K</td></tr>
+<tr><td>4 Intelligence 2010s–25</td><td>Storage, scale</td><td>Proprietary data</td><td>Cloud, mobile, ML; learning loops</td></tr>
+<tr><td>5 Autonomy 2025→</td><td>Cognition</td><td>Accountable judgement</td><td>Agentic AI (75% vs 15%)</td></tr></tbody></table></div>
+<h3>2 · Stacks</h3><div class="box"><ul><li><b>ATS</b> builds software; speed; 3–5 yrs; outages. <b>ETS</b> runs company; integrity/proof; 10–20 yrs; failed audit. Meet at <b>integration layer</b> (n(n−1)/2).</li><li>Layers: Interface, Applications, Integration, Data, Infrastructure. Six enterprise layers: records, integration, data, identity, infrastructure, governance.</li><li>2×2: Coordination, Unification (UPS), Diversification, Replication. Configure (cheap) vs customise (forever cost). 22% maintenance; ~50% run.</li><li>NIST: GOVERN IDENTIFY PROTECT DETECT RESPOND RECOVER. DPDP ₹250cr per breach.</li></ul></div>
+<h3>3 · ERP and Megatherm</h3><div class="box"><ul><li>ERP = shared data model. P2P: requisition→PO→goods receipt→invoice→3-way match→payment. O2C: enquiry→quote→order→availability→despatch→invoice→collection→cash application.</li><li>Options: A 8.1/$2.02m; B 7.8/$1.19m; C 7.8/$1.50m; Defer; Hybrid (unscored). Spread 2.6% = noise. Finance and Top Mgmt pick B; others A. Integration weight only 10%.</li><li>A TCO 5.4% of revenue (~1.1% a year). Missing: migration, productivity dip, exit. Takeaway: model chooses between vendors, never asks whether to buy.</li><li>E-invoicing >₹10cr: 30 days or lose input tax credit. 71% new Indian licences cloud.</li></ul></div>
+<h3>4 · DBS</h3><div class="box"><ul><li>2009 Gupta; pillars: digital to core, customer journey, start-up. Core banking 12 markets/28 months. GANDALF 2015. Watson failed → agile/MVP.</li><li>Wins: ATM −90% out-of-cash; IVR 30s, 3.5→4.1; AML a third more cases; Digibank India 2016 (6× customers, 12× transactions).</li><li>Data First 2018; ADA; 99% off physical servers; two-in-a-box; PURE; 1,000 experiments/yr; 85% outsourced→insourced; DigiFY 80%+.</li><li>FY22 net profit US$6.02bn (+20%); AI S$150m + S$25m; 30m nudges/month; API platform 150 APIs.</li></ul></div>
+<h3>5 · Definitions marked “not in your documents”</h3><div class="box"><ul><li>Monolith = one bundled app. Microservices = small independent services via APIs. CI/CD = auto build/test/release. Cloud-native = built for cloud, auto-scale. IaaS/PaaS/SaaS = rent servers / platform / software. Front end = seen; back end = behind. Digitisation = analogue→digital; digitalisation = digital changes the process. Moore’s law = transistors double ~2 years. Y2K = two-digit year bug.</li></ul></div>
+<h3>6 · Bonus chapters</h3><div class="box"><ul><li>Data: OLTP vs OLAP; warehouse (schema-on-write), lake (schema-on-read, swamp), lakehouse; grain; master data; residency (RBI 2018).</li><li>Pipelines: ETL/ELT, batch/streaming, data contract; six quality dimensions; who owns the definition.</li><li>AI: quality, coverage, latency, governance pass through; identity resolution; feature store, vector store/RAG, model registry.</li><li>Platforms: pipeline vs platform; 3 of 10 models are platforms; India Stack identity/data/payments/commerce; protocol over platform; ~80% UPI duopoly.</li></ul></div>`;
+
+boot();
+
+</script>

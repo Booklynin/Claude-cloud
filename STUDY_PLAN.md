@@ -125,17 +125,17 @@ The files that normally teach the ❌ items (the Session 3 application-stack pre
 
 ---
 
-## 6. Status tracker (update as work completes)
+## 6. Status tracker
+
+Decisions made: scope = **everything equally** (sessions 1-9); missing definitions = **labelled amber boxes**.
 
 - [x] Repo reviewed; all 12 files read
-- [x] Scope identified from question bank
-- [x] This plan
-- [ ] Decision on bonus sessions 6–9
-- [ ] Decision on gap handling (A / B / C)
-- [ ] Phase 1 · The 100-Year Story
-- [ ] Phase 2 · The Two Stacks
-- [ ] Phase 3 · ERP & Megatherm
-- [ ] Phase 4 · DBS
-- [ ] Phase 5 · Exam Toolkit
-- [ ] Coverage check (every QB question answered or flagged)
-- [ ] Bonus phases (only if confirmed)
+- [x] Plan written
+- [x] Chapter 1 The 100-Year Story
+- [x] Chapter 2 The Two Stacks
+- [x] Chapter 3 ERP and Megatherm
+- [x] Chapter 4 DBS
+- [x] Chapters 5-8 (bonus, sessions 6-9): Where Data Lives, Moving Data, Sephora/AI, Platforms and India Stack (compact)
+- [x] Exam Toolkit: 31 short + 8 long model answers, flashcards, mock quiz, cheat sheet
+- [x] Deliverable: `IT_for_Managers_Study_Guide.html` (open in a browser)
+- [ ] Known limits: Kaps Foods case, Session 3-5 slides not in repo; bonus chapters 5-8 are shorter than 1-4
